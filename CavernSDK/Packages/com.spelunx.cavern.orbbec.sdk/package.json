@@ -7,7 +7,7 @@
   "documentationUrl": "https://github.com/spelunx/UnityCavernSDK",
   "dependencies": {
     "com.spelunx.cavern.sdk": "0.1.16",
-    "com.spelunx.cavern.orbbec.libs": "0.0.2"
+    "com.spelunx.cavern.orbbec.libs": "0.0.3"
   },
   "keywords": [
     "orbbec"

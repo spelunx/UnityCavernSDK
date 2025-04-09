@@ -2,7 +2,8 @@
     "name": "Spelunx.Cavern.Orbbec.SDK.Editor",
     "rootNamespace": "Spelunx.Orbbec",
     "references": [
-        "Spelunx.Cavern.SDK"
+        "Spelunx.Cavern.SDK",
+        "Spelunx.Cavern.Orbbec.SDK"
     ],
     "includePlatforms": [
         "Editor"
