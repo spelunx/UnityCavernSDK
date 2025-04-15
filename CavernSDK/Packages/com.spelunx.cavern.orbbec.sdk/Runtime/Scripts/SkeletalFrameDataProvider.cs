@@ -25,6 +25,13 @@ namespace Spelunx.Orbbec {
 
                 // Allocate data buffer.
                 FrameData currentFrameData = new FrameData();
+                
+                // Check if this device ID is valid.
+                if (Device.GetInstalledCount() <= id) {
+                    UnityEngine.Debug.Log("SkeletalFrameDataProvider - Cannot open device ID " + id + ". Only " + Device.GetInstalledCount() + " devices are connected. Terminating thread.");
+                    return;
+                }
+
                 // Open device. The keyword "using" ensures that an IDisposable is properly disposed of even if an exception occurs within the block.
                 using (Device device = Device.Open(id)) { // TODO: Play around with ID
                     // Start Sensor Cameras.
@@ -35,7 +42,7 @@ namespace Spelunx.Orbbec {
                         WiredSyncMode = WiredSyncMode.Standalone,
                     });
 
-                    UnityEngine.Debug.Log("SkeletalFrameDataProvider - Open K4A device successful. ID: " + id + ", Serial Number: " + device.SerialNum);
+                    UnityEngine.Debug.Log("SkeletalFrameDataProvider - Open K4A device successfully. Device ID: " + id + ", Serial Number: " + device.SerialNum);
 
                     // Get tracker calibration and configuration.
                     var trackerCalibration = device.GetCalibration();
@@ -112,6 +119,7 @@ namespace Spelunx.Orbbec {
                     device.Dispose();
                 }
 
+                // Close log file.
                 if (rawDataLoggingFile != null) { rawDataLoggingFile.Close(); }
             } catch (Exception e) {
                 Debug.Log($"SkeletalFrameDataProvider - ID: {id}, Catching exception for background thread: {e.Message}");
