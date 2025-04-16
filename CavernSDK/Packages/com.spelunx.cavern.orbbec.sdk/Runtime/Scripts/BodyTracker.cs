@@ -58,6 +58,7 @@ namespace Spelunx.Orbbec {
         }
 
         private void InitBasisJointMap() {
+            // https://learn.microsoft.com/en-us/previous-versions/azure/kinect-dk/body-joints
             // Spine and left hip share the same basis.
             Quaternion leftHipBasis = Quaternion.LookRotation(xPositive, -zPositive);
             Quaternion spineHipBasis = Quaternion.LookRotation(xPositive, -zPositive);
@@ -136,54 +137,56 @@ namespace Spelunx.Orbbec {
         private Quaternion OrientateRotation(Quaternion rotation, SensorOrientation sensorOrientation) {
             switch (sensorOrientation) {
                 case SensorOrientation.Clockwise90:
-                    return rotation * Quaternion.AngleAxis(-90.0f, zPositive);
+                    return Quaternion.AngleAxis(90.0f, zPositive) * rotation;
                 case SensorOrientation.CounterClockwise90:
-                    return rotation * Quaternion.AngleAxis(90.0f, zPositive);
+                    return Quaternion.AngleAxis(-90.0f, zPositive) * rotation;
                 case SensorOrientation.Flip180:
-                    return rotation * Quaternion.AngleAxis(180.0f, zPositive);
+                    return Quaternion.AngleAxis(180.0f, zPositive) * rotation;
             }
             return rotation;
         }
 
         private Vector3 OrientatePosition(Vector3 position, SensorOrientation sensorOrientation) {
-            Matrix4x4 translationMatrix = Matrix4x4.Translate(position);
-            Matrix4x4 rotationMatrix = Matrix4x4.identity;
-            // Clockwise 90 degrees means that we face the camera, and then rotate the camera 90 degrees relative to us.
+            float rotationAngle = 0.0f;
             switch (sensorOrientation) {
                 case SensorOrientation.Clockwise90:
-                    // Intuitively, I know that if the camera is rotated clockwise 90 degrees, we should be rotating it
-                    // anti-clockwise 90 degrees instead. But trust me, this is correct. Why is it different from OrientateRotation?
-                    // Not a damn clue, I figured it out via trial and error.
-                    rotationMatrix = Matrix4x4.Rotate(Quaternion.AngleAxis(90.0f, zPositive));
+                    // Clockwise 90 degrees means that we face the camera, and then rotate the camera 90 degrees relative to us.
+                    // Intuitively, I know that if the camera is rotated clockwise 90 degrees, we should be rotating it anti-clockwise 90 degrees instead to compensate for it.
+                    // But why are we doing the opposite? Not a damn clue, I figured it out via trial and error.
+                    // It works, my semester is ending and I'm burnt out, and I'm not sure I really care that much right now.
+                    rotationAngle = 90.0f;
                     break;
                 case SensorOrientation.CounterClockwise90:
-                    rotationMatrix = Matrix4x4.Rotate(Quaternion.AngleAxis(-90.0f, zPositive));
+                    rotationAngle = -90.0f;
                     break;
                 case SensorOrientation.Flip180:
-                    rotationMatrix = Matrix4x4.Rotate(Quaternion.AngleAxis(180.0f, zPositive));
+                    rotationAngle = 180.0f;
                     break;
             }
 
             // Left-Hand Rule!
+            Matrix4x4 translationMatrix = Matrix4x4.Translate(position);
+            Matrix4x4 rotationMatrix = Matrix4x4.Rotate(Quaternion.AngleAxis(rotationAngle, zPositive));
             Matrix4x4 positionMatrix = rotationMatrix * translationMatrix;
             return new Vector3(positionMatrix.m03, positionMatrix.m13, positionMatrix.m23);
         }
 
-        private void SetBonesTransform(Body skeleton, SensorOrientation sensorOrientation) {
+        private void SetBonesTransform(Body body, SensorOrientation sensorOrientation) {
             for (int jointNum = 0; jointNum < (int)JointId.Count; jointNum++) {
                 // Calculate joint position.
                 Vector3 jointPos = OrientatePosition(
-                    new Vector3(skeleton.JointPositions3D[jointNum].X,
-                                -skeleton.JointPositions3D[jointNum].Y,
-                                skeleton.JointPositions3D[jointNum].Z),
+                    new Vector3(body.JointPositions3D[jointNum].X, -body.JointPositions3D[jointNum].Y, body.JointPositions3D[jointNum].Z), // Convert from System.Numerics.Vector3 to UnityEngine.Vector3.
                     sensorOrientation);
 
-                Quaternion jointRot = Y_180_FLIP * new Quaternion(
-                    skeleton.JointRotations[jointNum].X,
-                    skeleton.JointRotations[jointNum].Y,
-                    skeleton.JointRotations[jointNum].Z,
-                    skeleton.JointRotations[jointNum].W) * Quaternion.Inverse(basisJointMap[(JointId)jointNum]);
-                jointRot = OrientateRotation(jointRot, sensorOrientation);
+                // We have to convert from System.Numerics.Quaternion to UnityEngine.Quaternion.
+                Quaternion bodyJointRotation = new Quaternion(
+                    body.JointRotations[jointNum].X,
+                    body.JointRotations[jointNum].Y,
+                    body.JointRotations[jointNum].Z,
+                    body.JointRotations[jointNum].W);
+
+                // By rotating the inverse of a basis, we are bring a point from world space, into that basis' space.
+                Quaternion jointRot = OrientateRotation(Y_180_FLIP * bodyJointRotation * Quaternion.Inverse(basisJointMap[(JointId)jointNum]), sensorOrientation);
                 absoluteJointRotations[jointNum] = jointRot;
 
                 // These are absolute body space because each joint has the body root for a parent in the scene graph.
@@ -199,9 +202,9 @@ namespace Spelunx.Orbbec {
 
                 // For the other joints, rotate and scale their bones so that they link up with the parent joint.
                 Vector3 parentTrackerSpacePosition = OrientatePosition(
-                    new Vector3(skeleton.JointPositions3D[(int)parentJointMap[(JointId)jointNum]].X,
-                                -skeleton.JointPositions3D[(int)parentJointMap[(JointId)jointNum]].Y,
-                                skeleton.JointPositions3D[(int)parentJointMap[(JointId)jointNum]].Z),
+                    new Vector3(body.JointPositions3D[(int)parentJointMap[(JointId)jointNum]].X,
+                                -body.JointPositions3D[(int)parentJointMap[(JointId)jointNum]].Y,
+                                body.JointPositions3D[(int)parentJointMap[(JointId)jointNum]].Z),
                     sensorOrientation);
                 Vector3 boneDirectionTrackerSpace = jointPos - parentTrackerSpacePosition;
                 Vector3 boneDirectionWorldSpace = transform.rotation * boneDirectionTrackerSpace;

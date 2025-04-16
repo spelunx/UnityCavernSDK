@@ -6,11 +6,13 @@ using UnityEngine;
 using System.Runtime.Serialization;
 
 namespace Spelunx.Orbbec {
+    // TODO: Ripped this from the Azure sample. Might want to clean it up some day.
     // Class with relevant information about body, bodyId and 2d and 3d points of all joints.
     [Serializable]
     public struct Body : ISerializable {
         public const float Invalid2DCoordinate = -1;
 
+        // Take note that theses are System.Numerics classes, not UnityEngine classes.
         public System.Numerics.Vector3[] JointPositions3D;
         public System.Numerics.Vector2[] JointPositions2D;
         public System.Numerics.Quaternion[] JointRotations;

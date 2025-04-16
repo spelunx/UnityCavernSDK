@@ -87,12 +87,10 @@ namespace Spelunx.Orbbec {
                     finalJoint.rotation = absOffset * Quaternion.Inverse(absOffset) * bodyTracker.GetAbsoluteJointRotation((JointId)j) * absOffset;
                     if (j == 0) {
                         // Avatar root + offset from the script variables + translation reading from the sensor.
-                        finalJoint.position = avatarRoot.position + avatarOffset +
-                                              new Vector3(skeletonRoot.localPosition.x, skeletonRoot.localPosition.y, skeletonRoot.localPosition.z);
+                        finalJoint.position = avatarRoot.position + avatarOffset + skeletonRoot.localPosition;
                     }
                 }
             }
         }
-
     }
 }
