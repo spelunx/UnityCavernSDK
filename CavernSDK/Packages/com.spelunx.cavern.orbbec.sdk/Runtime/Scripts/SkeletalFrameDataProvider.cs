@@ -8,37 +8,45 @@ using System.Threading;
 namespace Spelunx.Orbbec {
     public class SkeletalFrameDataProvider : FrameDataProvider {
         // Internal variables.
+        private string deviceSerial = "";
         private SensorOrientation sensorOrientation;
 
         // For logging. Currently not enabled.
         private System.Runtime.Serialization.Formatters.Binary.BinaryFormatter binaryFormatter { get; set; } = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
         private Stream rawDataLoggingFile = null;
 
-        public SkeletalFrameDataProvider(int id, SensorOrientation sensorOrientation) : base(id) {
+        public SkeletalFrameDataProvider(string deviceSerial, SensorOrientation sensorOrientation, int id, FinishCallback finishCallback) : base(id, finishCallback) {
+            this.deviceSerial = deviceSerial;
             this.sensorOrientation = sensorOrientation;
         }
 
-        protected override void RunBackgroundThreadAsync(int id, CancellationToken token) {
+        public string GetDeviceSerial() { return deviceSerial; }
+
+        protected override void RunBackgroundThreadAsync(int id, CancellationToken token, FinishCallback onFinish) {
             try {
                 UnityEngine.Debug.Log("Starting body tracker background thread.");
 
                 // Allocate data buffer.
                 FrameData currentFrameData = new FrameData();
-                
+
                 // Check if this device ID is valid.
                 if (Device.GetInstalledCount() <= id) {
-                    UnityEngine.Debug.Log("SkeletalFrameDataProvider - Cannot open device ID " + id + ". Only " + Device.GetInstalledCount() + " devices are connected. Terminating thread.");
-                    return;
+                    throw new Exception("SkeletalFrameDataProvider - Cannot open device ID " + id + ". Only " + Device.GetInstalledCount() + " devices are connected. Terminating thread.");
                 }
 
                 // Open device. The keyword "using" ensures that an IDisposable is properly disposed of even if an exception occurs within the block.
                 using (Device device = Device.Open(id)) { // TODO: Play around with ID
+                    if (deviceSerial != device.SerialNum) {
+                        throw new Exception("SkeletalFrameDataProvider - ID " + id + ". Expected " + deviceSerial + ", but device serial is " + device.SerialNum + ". Terminating thread.");
+                    }
+
                     // Start Sensor Cameras.
                     device.StartCameras(new DeviceConfiguration() {
                         CameraFPS = FPS.FPS30,
                         ColorResolution = ColorResolution.Off,
                         DepthMode = DepthMode.NFOV_Unbinned,
                         WiredSyncMode = WiredSyncMode.Standalone,
+                        DisableStreamingIndicator = false // Ensure that the LED light on the sensor is on so that we can visually see what we are connected to.
                     });
 
                     UnityEngine.Debug.Log("SkeletalFrameDataProvider - Open K4A device successfully. Device ID: " + id + ", Serial Number: " + device.SerialNum);
@@ -71,7 +79,8 @@ namespace Spelunx.Orbbec {
                                     continue;
                                 }
 
-                                IsRunning = true; // Flag that the thread has started.
+                                // Flag that the thread has started.
+                                HasStarted = true;
 
                                 // Copy bodies.
                                 currentFrameData.NumOfBodies = frame.NumberOfBodies;
@@ -119,12 +128,11 @@ namespace Spelunx.Orbbec {
                 }
 
                 if (rawDataLoggingFile != null) { rawDataLoggingFile.Close(); } // Close log file.
-
-                IsRunning = false; // Flag that the thread has ended.
             } catch (Exception e) {
-                IsRunning = false; // Flag that the thread has ended.
                 UnityEngine.Debug.Log($"SkeletalFrameDataProvider - ID: {id}, Catching exception for background thread: {e.Message}");
-                token.ThrowIfCancellationRequested();
+            } finally {
+                UnityEngine.Debug.Log($"SkeletalFrameDataProvider - ID: {id}, Shutting down background thread.");
+                onFinish?.Invoke();
             }
         }
     }

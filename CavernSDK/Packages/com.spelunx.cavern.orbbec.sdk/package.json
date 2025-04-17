@@ -1,6 +1,6 @@
 {
   "name": "com.spelunx.cavern.orbbec.sdk",
-  "version": "0.0.14",
+  "version": "0.0.15",
   "displayName": "Spelunx Cavern Orbbec SDK",
   "description": "Support for ORBBEC sensors.",
   "unity": "6000.0",
