@@ -1,0 +1,24 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <Style src="project://database/Packages/com.spelunx.cavern.sdk/Editor/Windows/CavernToolsPanel.uss?fileID=7433441132597879392&amp;guid=ffbb8928b3dbfea40865407e1d1ffad1&amp;type=3#CavernToolsPanel" />
+    <ui:Label text="CAVERN Tools" name="Title" class="custom-label" style="font-size: 20px; -unity-font-style: bold; margin-bottom: 0; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 5px; margin-right: 5px; margin-left: 5px;" />
+    <ui:VisualElement name="CavernSetup" class="doBackground">
+        <ui:Label text="CAVERN Setup" name="Setup" class="custom-label title" style="font-size: 16px; -unity-text-align: middle-left; margin-top: 0; margin-bottom: 0;" />
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row; padding-top: 2px; margin-bottom: 15px;">
+            <ui:VisualElement name="SetupIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.spelunx.cavern.sdk/Editor/Windows/Icons/UI_CAVERN%20Setup.png?fileID=2800000&amp;guid=0fa2258466ad55d4fbf9db81f45fefbe&amp;type=3#UI_CAVERN Setup&quot;); width: 25%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; -unity-background-scale-mode: scale-to-fit; min-width: 75px; min-height: 75px;" />
+            <ui:Label text="Sets up scene for CAVERN development. Replaces the default Unity camera with the CAVERN camera rig. Adds a CAVERN preview as a gizmo. Defaults audio speaker mode to 7.1 surround sound.&#10;&#10;*Note: You should only have 1 CAVERN setup and 1 CAVERN camera in your scene." name="Description" style="flex-wrap: wrap; white-space: normal; width: 75%; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-right: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Buttons" style="flex-grow: 1; border-left-color: rgba(209, 209, 209, 0); border-right-color: rgba(209, 209, 209, 0); border-top-color: rgba(209, 209, 209, 0); border-bottom-color: rgba(209, 209, 209, 0); height: auto;">
+            <ui:Button text="Add new CAVERN Setup" name="CavernSetupButton" class="button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+    <ui:VisualElement name="RoundUISetup" class="doBackground">
+        <ui:Label text="Round UI" name="RoundUI" class="custom-label title" style="font-size: 16px; -unity-text-align: middle-left;" />
+        <ui:VisualElement style="flex-grow: 1; flex-direction: row; padding-top: 2px;">
+            <ui:VisualElement name="RoundUIIcon" style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.spelunx.cavern.sdk/Editor/Windows/Icons/UI_RoundUI.png?fileID=2800000&amp;guid=21e0edb4f0a625b4d9ae4a31bbf08a7f&amp;type=3#UI_RoundUI&quot;); width: 25%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; -unity-background-scale-mode: scale-to-fit; min-width: 75px; min-height: 75px;" />
+            <ui:Label text="Creates a curved world space UI that matches the curvature of the CAVERN. This is used to wrap 2D visuals around the CAVERN.&#10;&#10;*Note: RoundUI depends on having a CAVERN Setup in the scene. Please make sure to add CAVERN Setup before adding this setup." name="Description" style="flex-wrap: wrap; white-space: normal; width: 75%; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-right: 0;" />
+        </ui:VisualElement>
+        <ui:VisualElement name="Button" style="flex-grow: 1; border-left-color: rgba(209, 209, 209, 0); border-right-color: rgba(209, 209, 209, 0); border-top-color: rgba(209, 209, 209, 0); border-bottom-color: rgba(209, 209, 209, 0);">
+            <ui:Button text="Add new RoundUI Setup" name="RoundUISetupButton" class="button" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,75 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Packages/com.spelunx.cavern.vive-trackers/Editor/Windows/ViveToolsPanel.uss?fileID=7433441132597879392&amp;guid=af469761b4451734081bc3139716eb26&amp;type=3#ViveToolsPanel" />
+    <ui:VisualElement name="Background" style="flex-grow: 1;">
+        <ui:Label text="VIVE Tracker Tools" name="TrackerTools" class="title" style="font-size: 20px; margin-top: 5px; margin-right: 5px; margin-bottom: 0; margin-left: 5px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;" />
+        <ui:ScrollView name="ScrollView">
+            <ui:VisualElement name="ViveUISetup" class="doBackground" style="height: auto; min-height: auto; flex-wrap: nowrap; flex-direction: column; padding-bottom: 5px;">
+                <ui:VisualElement name="ViveSetup" style="flex-grow: 1; width: auto; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; padding-bottom: 5px;">
+                    <ui:Label text="VIVE Tracker Setup" name="ViveSetupTitle" class="custom-label title" style="font-size: 16px; -unity-text-align: middle-left; margin-top: 0; margin-bottom: 0;" />
+                    <ui:VisualElement style="flex-grow: 1; flex-direction: row; padding-top: 2px; margin-bottom: 15px;">
+                        <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.spelunx.cavern.vive-trackers/Editor/Windows/Icons/UI_VIVE.png?fileID=2800000&amp;guid=d81b6ffaa24ab894a905c7cb2e636913&amp;type=3#UI_VIVE&quot;); width: 25%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; -unity-background-scale-mode: scale-to-fit; min-width: 75px; min-height: 75px;" />
+                        <ui:Label text="Adds a new VIVE tracker to your scene. Also adds a new VIVE tracker manager to your scene if no tracker managers present.&#10;&#10;*Note: There should only be 1 VIVE tracker manager in the scene. All the VIVE trackers&apos; origins are default set to the VIVE tracker manager and their bindings are default set to &quot;right shoulder&quot;." name="Description" style="flex-wrap: wrap; white-space: normal; width: 75%; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-right: 0;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="Buttons" style="flex-grow: 1; border-left-color: rgba(209, 209, 209, 0); border-right-color: rgba(209, 209, 209, 0); border-top-color: rgba(209, 209, 209, 0); border-bottom-color: rgba(209, 209, 209, 0); height: auto; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0;">
+                        <ui:Button text="Add new VIVE Tracker Setup/VIVE Tracker" name="ViveSetupButton" class="button" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="ViveInfo" style="flex-grow: 1; flex-wrap: nowrap; width: auto; -unity-font-style: bold; border-left-color: rgb(88, 88, 88); border-right-color: rgb(88, 88, 88); border-top-color: rgb(88, 88, 88); border-bottom-color: rgb(88, 88, 88); border-top-width: 2px; border-right-width: 2px; border-bottom-width: 2px; border-left-width: 2px; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px;">
+                    <ui:Label text="VIVE Trackers in Scene: 0" name="TrackerCount" style="flex-wrap: nowrap; white-space: normal; margin-top: 5px; margin-right: 5px; margin-bottom: 5px; margin-left: 5px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; font-size: 16px;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label text="Interaction Building Blocks" name="BuildingBlocks" class="title" style="font-size: 20px; margin-top: 5px; margin-right: 5px; margin-bottom: 0; margin-left: 5px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;" />
+            <ui:Label text="A collection of interactions using Vive Trackers. To add to an interaction to an object, select the object, then click the desired add interaction button." name="Description" style="flex-wrap: wrap; white-space: normal; width: 100%; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-right: 5px; -unity-text-align: middle-left; margin-top: 5px; margin-bottom: 0; margin-left: 5px; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px;" />
+            <ui:VisualElement name="Follow" class="doBackground">
+                <ui:Label text="Follow Target" name="BuildingBlockName" class="custom-label title" style="font-size: 16px; -unity-text-align: middle-left; margin-top: 0; margin-bottom: 0;" />
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row; padding-top: 2px; margin-bottom: 15px;">
+                    <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.spelunx.cavern.vive-trackers/Editor/Windows/Icons/UI_Follow.png?fileID=2800000&amp;guid=59aaee05a551a23418515c923081315f&amp;type=3#UI_Follow&quot;); width: 25%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; -unity-background-scale-mode: scale-to-fit; min-width: 75px; min-height: 75px;" />
+                    <ui:Label text="Object follows the position of target. Object can follow at a specified offset." name="Description" style="flex-wrap: wrap; white-space: normal; width: 75%; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-right: 0;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Buttons" style="flex-grow: 1; border-left-color: rgba(209, 209, 209, 0); border-right-color: rgba(209, 209, 209, 0); border-top-color: rgba(209, 209, 209, 0); border-bottom-color: rgba(209, 209, 209, 0); height: auto;">
+                    <ui:Button text="Add Follow Interaction" name="FollowButton" class="button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Orbit" class="doBackground">
+                <ui:Label text="Orbit CAVERN" name="BuildingBlockName" class="custom-label title" style="font-size: 16px; -unity-text-align: middle-left; margin-top: 0; margin-bottom: 0;" />
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row; padding-top: 2px; margin-bottom: 15px;">
+                    <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.spelunx.cavern.vive-trackers/Editor/Windows/Icons/UI_Mirror.png?fileID=2800000&amp;guid=6662262491900994bba445d746934995&amp;type=3#UI_Mirror&quot;); width: 25%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; -unity-background-scale-mode: scale-to-fit; min-width: 75px; min-height: 75px;" />
+                    <ui:Label text="Object &quot;orbits&quot; around the CAVERN, following the CAVERN&apos;s curvature based on the position of a target." name="Description" style="flex-wrap: wrap; white-space: normal; width: 75%; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-right: 0;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Buttons" style="flex-grow: 1; border-left-color: rgba(209, 209, 209, 0); border-right-color: rgba(209, 209, 209, 0); border-top-color: rgba(209, 209, 209, 0); border-bottom-color: rgba(209, 209, 209, 0); height: auto;">
+                    <ui:Button text="Add Orbit Interaction" name="OrbitButton" class="button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Evade" class="doBackground">
+                <ui:Label text="Evade Target" name="BuildingBlockName" class="custom-label title" style="font-size: 16px; -unity-text-align: middle-left; margin-top: 0; margin-bottom: 0;" />
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row; padding-top: 2px; margin-bottom: 15px;">
+                    <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.spelunx.cavern.vive-trackers/Editor/Windows/Icons/UI_Evade.png?fileID=2800000&amp;guid=fd46e03a41fa9474d9eb74a7a42408b7&amp;type=3#UI_Evade&quot;); width: 25%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; -unity-background-scale-mode: scale-to-fit; min-width: 75px; min-height: 75px;" />
+                    <ui:Label text="Object moves away from a target when it gets too close. Trigger distance and run away distance can be set by parameter." name="Description" style="flex-wrap: wrap; white-space: normal; width: 75%; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-right: 0;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Buttons" style="flex-grow: 1; border-left-color: rgba(209, 209, 209, 0); border-right-color: rgba(209, 209, 209, 0); border-top-color: rgba(209, 209, 209, 0); border-bottom-color: rgba(209, 209, 209, 0); height: auto;">
+                    <ui:Button text="Add Evade Interaction" name="EvadeButton" class="button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="LookAt" class="doBackground">
+                <ui:Label text="Look At Target" name="BuildingBlockName" class="custom-label title" style="font-size: 16px; -unity-text-align: middle-left; margin-top: 0; margin-bottom: 0;" />
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row; padding-top: 2px; margin-bottom: 15px;">
+                    <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.spelunx.cavern.vive-trackers/Editor/Windows/Icons/UI_Lookat.png?fileID=2800000&amp;guid=4e31800867c2ec64cbe66dff2c18c0eb&amp;type=3#UI_Lookat&quot;); width: 25%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; -unity-background-scale-mode: scale-to-fit; min-width: 75px; min-height: 75px;" />
+                    <ui:Label text="Object rotates to face the target." name="Description" style="flex-wrap: wrap; white-space: normal; width: 75%; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-right: 0;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Buttons" style="flex-grow: 1; border-left-color: rgba(209, 209, 209, 0); border-right-color: rgba(209, 209, 209, 0); border-top-color: rgba(209, 209, 209, 0); border-bottom-color: rgba(209, 209, 209, 0); height: auto;">
+                    <ui:Button text="Add Look At Interaction" name="LookAtButton" class="button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="Zones" class="doBackground">
+                <ui:Label text="CAVERN Zones" name="BuildingBlockName" class="custom-label title" style="font-size: 16px; -unity-text-align: middle-left; margin-top: 0; margin-bottom: 0;" />
+                <ui:VisualElement style="flex-grow: 1; flex-direction: row; padding-top: 2px; margin-bottom: 15px;">
+                    <ui:VisualElement name="Icon" style="flex-grow: 1; background-image: url(&quot;project://database/Packages/com.spelunx.cavern.vive-trackers/Editor/Windows/Icons/UI_Zones.png?fileID=2800000&amp;guid=0e22af7012da3364e929f7dc20a9b613&amp;type=3#UI_Zones&quot;); width: 25%; padding-top: 5px; padding-right: 5px; padding-bottom: 5px; padding-left: 5px; margin-top: 2px; margin-right: 2px; margin-bottom: 2px; margin-left: 2px; -unity-background-scale-mode: scale-to-fit; min-width: 75px; min-height: 75px;" />
+                    <ui:Label text="Create distinct zones within the CAVERN with a deadzone in the middle. This script gets attached to the ViveTrackerManager object, and zone information can be read from there." name="Description" style="flex-wrap: wrap; white-space: normal; width: 75%; border-top-width: 5px; border-right-width: 5px; border-bottom-width: 5px; border-left-width: 5px; margin-right: 0;" />
+                </ui:VisualElement>
+                <ui:VisualElement name="Buttons" style="flex-grow: 1; border-left-color: rgba(209, 209, 209, 0); border-right-color: rgba(209, 209, 209, 0); border-top-color: rgba(209, 209, 209, 0); border-bottom-color: rgba(209, 209, 209, 0); height: auto;">
+                    <ui:Button text="Add CAVERN Zones" name="ZonesButton" class="button" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:ScrollView>
+    </ui:VisualElement>
+</ui:UXML>

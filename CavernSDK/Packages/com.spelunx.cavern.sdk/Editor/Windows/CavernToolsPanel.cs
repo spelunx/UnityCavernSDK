@@ -1,76 +1,97 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEditor;
+using UnityEngine;
+using UnityEngine.UIElements;
 using UnityEditor.SceneManagement;
-
+using UnityEngine.SceneManagement;
 
 namespace Spelunx
 {
     public class CavernToolsPanel : EditorWindow
     {
-        const float PADDING = 20.0f;
+        [SerializeField]
+        private VisualTreeAsset m_VisualTreeAsset = default;
 
+        // places tools under CAVERN toolbar with hierarchy ordering
         [MenuItem("CAVERN/CAVERN Tools", false, 100)]
         public static void ShowWindow()
         {
-            GetWindow<CavernToolsPanel>("CAVERN Tools");
+            CavernToolsPanel wnd = GetWindow<CavernToolsPanel>();
+            wnd.titleContent = new GUIContent("CAVERN Tools");
         }
 
-        private void OnGUI()
+        public void CreateGUI()
         {
-            //===== CAVERN Setup =====
-            GUILayout.Label("CAVERN Setup", EditorStyles.boldLabel);
-            EditorGUILayout.HelpBox("Sets up scene for CAVERN development. Replaces the default Unity camera with the CAVERN camera rig. Defaults audio speaker mode to 7.1 surround sound.", MessageType.Info);
-            if (GUILayout.Button("Add new CAVERN setup"))
-            {
-                // adds cavern setup prefab to scene
-                GameObject cavernSetupPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/CavernSetup.prefab", typeof(GameObject));
-                GameObject cavernSetupInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernSetupPrefab as GameObject);
+            // root VisualElement object of editor window
+            VisualElement root = rootVisualElement;
 
-                // load in the debug keys
-                // newCavernSetup.GetComponent<DebugManager>().AddKeyManager(new BuiltInKeys());
+            // Instantiate UXML, UI setup in UXML document
+            VisualElement panelSetup = m_VisualTreeAsset.Instantiate();
+            root.Add(panelSetup);
 
-                // sets speaker mode to 7.1 surround
-                AudioConfiguration audioConfigs = AudioSettings.GetConfiguration();
-                audioConfigs.speakerMode = AudioSpeakerMode.Mode7point1;
-                AudioSettings.Reset(audioConfigs);
+            VisualElement roundUI = root.Q("RoundUISetup");
 
-                // removes any default main cameras in scene (but preserves any cameras not tagged as MainCamera)
-                GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-                if (mainCamera != null)
-                {
-                    Undo.DestroyObjectImmediate(GameObject.FindGameObjectWithTag("MainCamera"));
-                }
-                bool isDirty = EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
-            }
+            // Add button functionality for CAVERN setup and round UI setup
+            Button cavernSetupButton = root.Q<Button>("CavernSetupButton");
+            cavernSetupButton.RegisterCallback<ClickEvent, VisualElement>(CavernSetup, roundUI);
 
-            // We do not want to show any of the other options unless there is a CavernRenderer in the scene.
+            Button roundUISetupButton = root.Q<Button>("RoundUISetupButton");
+
             CavernRenderer cavernRenderer = FindFirstObjectByType<CavernRenderer>();
-            if (cavernRenderer == null) return;
 
-            //===== Round UI =====
-            GUILayout.Space(PADDING);
-            GUILayout.Label("Round CAVERN UI Setup", EditorStyles.boldLabel);
-            EditorGUILayout.HelpBox("Creates a curved world space UI that matches the curvature of the CAVERN. This is used to wrap 2D visuals around the CAVERN.", MessageType.Info);
-            if (GUILayout.Button("Add new RoundUI setup"))
+            // Hides roundUI setup if no CAVERN setup present in scene since it depends on the setup
+            if (cavernRenderer == null)
             {
-                GameObject cavernUIPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/CavernUI.prefab", typeof(GameObject));
-                GameObject cavernUIInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernUIPrefab as GameObject);
-
-                GameObject roundCavernMeshRendererPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/RoundCavernMeshRenderer.prefab", typeof(GameObject));
-                GameObject roundCavernMeshRendererInstance = (GameObject)PrefabUtility.InstantiatePrefab(roundCavernMeshRendererPrefab as GameObject);
-
-                WorldSpaceMeshCanvas meshCanvas = roundCavernMeshRendererInstance.GetComponent<WorldSpaceMeshCanvas>();
-                meshCanvas.setCavernRenderer(cavernRenderer);
-
-                // Do it this way instead. This way there's no need to worry about the child being reordered or whatever.
-                meshCanvas.transform.parent = cavernRenderer.transform;
-                meshCanvas.transform.localPosition = Vector3.zero;
-                meshCanvas.transform.localRotation = Quaternion.identity;
-
-                EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+                roundUI.style.visibility = Visibility.Hidden;
             }
+            roundUISetupButton.RegisterCallback<ClickEvent>(RoundUISetup);
+        }
+
+        private void CavernSetup(ClickEvent evt, VisualElement roundUI)
+        {
+            // load from path
+            GameObject cavernSetupPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/CavernSetup.prefab", typeof(GameObject));
+            GameObject cavernSetupInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernSetupPrefab as GameObject);
+
+            // sets speaker mode to 7.1 surround
+            AudioConfiguration audioConfigs = AudioSettings.GetConfiguration();
+            audioConfigs.speakerMode = AudioSpeakerMode.Mode7point1;
+            AudioSettings.Reset(audioConfigs);
+
+            // removes any default main cameras in scene (but preserves any cameras not tagged as MainCamera)
+            GameObject mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
+            if (mainCamera != null)
+            {
+                Undo.DestroyObjectImmediate(GameObject.FindGameObjectWithTag("MainCamera"));
+            }
+
+            // mark scene as edited to prompt saving
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+
+            // sets roundUI section of tools panel to be visible
+            roundUI.style.visibility = Visibility.Visible;
+        }
+
+        private void RoundUISetup(ClickEvent evt)
+        {
+            CavernRenderer cavernRenderer = FindFirstObjectByType<CavernRenderer>();
+
+            // load from path
+            GameObject cavernUIPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/CavernUI.prefab", typeof(GameObject));
+            GameObject cavernUIInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernUIPrefab as GameObject);
+
+            GameObject roundCavernMeshRendererPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/RoundCavernMeshRenderer.prefab", typeof(GameObject));
+            GameObject roundCavernMeshRendererInstance = (GameObject)PrefabUtility.InstantiatePrefab(roundCavernMeshRendererPrefab as GameObject);
+
+            WorldSpaceMeshCanvas meshCanvas = roundCavernMeshRendererInstance.GetComponent<WorldSpaceMeshCanvas>();
+            meshCanvas.setCavernRenderer(cavernRenderer);
+
+            // set default parameters of roundUI mesh
+            meshCanvas.transform.parent = cavernRenderer.transform;
+            meshCanvas.transform.localPosition = Vector3.zero;
+            meshCanvas.transform.localRotation = Quaternion.identity;
+
+            // mark scene as edited to prompt saving
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
         }
     }
-
 }
