@@ -24,6 +24,7 @@ namespace Spelunx.Orbbec {
         private FrameData frameData = new FrameData();
         private FrameDataProvider frameDataProvider = null; // One for each Femto Bolt. One Femto Bolt can support multiple (like 20?) skeletons.
         private bool isReady = true; // A flag to ensure that a new frame data provider waits for the old one to shutdown completely, so that it is impossible for them to open the same device.
+        private bool hasDetectedBodies = false;
 
         private static BodyTrackerManager instance;
         public void SetBodyTracker(BodyTracker bodyTracker) { this.bodyTracker = bodyTracker; }
@@ -31,10 +32,12 @@ namespace Spelunx.Orbbec {
 
         public void SetSensorOrientation(SensorOrientation sensorOrientation) { this.sensorOrientation = sensorOrientation; }
         public SensorOrientation GetSensorOrientation() { return this.sensorOrientation; }
-        
+
         public void SetDeviceSerial(string deviceSerial) { this.deviceSerial = deviceSerial; }
         public string GetDeviceSerial() { return deviceSerial; }
         public List<string> GetAvailableSerials() { return availableSerials; }
+
+        public bool HasDetectedBodies() { return hasDetectedBodies; }
 
         private void Awake() {
             // This ensures that only 1 BodyTrackerManager exists at a time.
@@ -86,12 +89,21 @@ namespace Spelunx.Orbbec {
                 }
             }
 
-            // Update the skeleton.
-            if (null == frameDataProvider ||
-                !frameDataProvider.HasStarted ||
-                !frameDataProvider.GetData(ref frameData) ||
-                frameData.NumDetectedBodies == 0) { return; }
-            bodyTracker.UpdateSkeleton(frameData, sensorOrientation);
+            // Check if the frame data provider has started.
+            if (null == frameDataProvider || !frameDataProvider.HasStarted) {
+                hasDetectedBodies = false;
+                return;
+            }
+
+            // Update the skeleton if there is new data.
+            if (frameDataProvider.GetData(ref frameData)) {
+                if (0 < frameData.NumDetectedBodies) {
+                    hasDetectedBodies = true;
+                    bodyTracker.UpdateSkeleton(frameData, sensorOrientation);
+                } else {
+                    hasDetectedBodies = false;
+                }
+            }
         }
 
         /// Scan through the ORBBEC devices and retrieve their serial numbers.

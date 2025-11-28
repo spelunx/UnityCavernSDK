@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using Microsoft.Azure.Kinect.Sensor;
 using Microsoft.Azure.Kinect.BodyTracking;
-using static UnityEngine.Analytics.IAnalytic;
 
 namespace Spelunx.Orbbec {
     /// Processes data from the ORBBEC sensor in a background thread to produce FrameData.
@@ -22,6 +21,7 @@ namespace Spelunx.Orbbec {
         private FrameData backBuffer = new FrameData();
         private object dataMutex = new object();
         private CancellationTokenSource cancellationTokenSource = new CancellationTokenSource();
+        private Task backgroundThread = null;
 
         public FrameDataProvider(int deviceId, SensorOrientation orientation, FinishCallback onFinish) {
 #if UNITY_EDITOR
@@ -30,7 +30,7 @@ namespace Spelunx.Orbbec {
 
             Orientation = orientation;
 
-            Task.Run(() => RunBackgroundThreadAsync(deviceId, cancellationTokenSource.Token, onFinish));
+            backgroundThread = Task.Run(() => RunBackgroundThreadAsync(deviceId, cancellationTokenSource.Token, onFinish));
         }
 
         public void Dispose() {
@@ -41,6 +41,8 @@ namespace Spelunx.Orbbec {
             cancellationTokenSource?.Cancel();
             cancellationTokenSource?.Dispose();
             cancellationTokenSource = null;
+
+            backgroundThread?.Wait();
         }
 
         public bool GetData(ref FrameData output) {
