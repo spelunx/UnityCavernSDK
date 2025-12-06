@@ -94,7 +94,7 @@ MonoBehaviour:
   cavernRadius: 3
   cavernAngle: 270
   cavernElevation: 0
-  enableConvergence: 0
+  enableConvergence: 1
   swapEyes: 0
   tetherEar: 0
   clampHeadPosition: 1

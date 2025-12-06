@@ -31,7 +31,7 @@
       "source": "embedded",
       "dependencies": {
         "com.unity.nuget.newtonsoft-json": "3.0.2",
-        "com.spelunx.cavern.sdk": "1.4.2",
+        "com.spelunx.cavern.sdk": "1.4.3",
         "com.unity.xr.openxr": "1.14.0",
         "com.spelunx.valvesoftware.unity.openvr": "1.2.6"
       }
