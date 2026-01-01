@@ -1,7 +1,7 @@
 {
   "name": "com.spelunx.valvesoftware.unity.openvr",
-  "displayName": "OpenVR XR Plugin",
-  "version": "1.2.6",
+  "displayName": "Spelunx OpenVR XR Plugin",
+  "version": "1.5.0",
   "unity": "6000.0",
   "description": "Provides rendering support for OpenVR devices in Unity XR. For input please see: https://github.com/ValveSoftware/steamvr_unity_plugin",
   "keywords": [
