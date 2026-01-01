@@ -44,7 +44,7 @@
   "scopedRegistries": [
     {
       "name": "ETC Package Registry",
-      "url": "https://upm.etc.cmu.edu",
+      "url": "https://unity.etc.cmu.edu/",
       "scopes": [
         "com.spelunx"
       ],

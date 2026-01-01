@@ -5,7 +5,7 @@
       "depth": 1,
       "source": "registry",
       "dependencies": {},
-      "url": "https://upm.etc.cmu.edu"
+      "url": "https://unity.etc.cmu.edu"
     },
     "com.spelunx.cavern.orbbec.sdk": {
       "version": "file:com.spelunx.cavern.orbbec.sdk",
