@@ -1,0 +1,8 @@
+<map id="GameManager" name="GameManager">
+<area shape="rect" id="node1" title=" " alt="" coords="108,735,227,812"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,129,83"/>
+<area shape="rect" id="node4" href="$d4/d24/classSpelunx_1_1Vive_1_1Zones.html" title=" " alt="" coords="92,529,243,621"/>
+<area shape="rect" id="node5" href="$db/d6f/classSpelunx_1_1CavernRenderer.html" title=" " alt="" coords="105,132,307,415"/>
+<area shape="rect" id="node3" href="$d1/df1/classGameManager_1_1ZoneData.html" title=" " alt="" coords="267,477,452,672"/>
+<area shape="rect" id="node6" href="$d3/dbb/structSpelunx_1_1Vive_1_1Zones_1_1ZonedTracker.html" title=" " alt="" coords="331,213,527,334"/>
+</map>

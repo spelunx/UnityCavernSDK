@@ -1,0 +1,8 @@
+<map id="Spelunx.Vive.OVRT_TrackedDevice" name="Spelunx.Vive.OVRT_TrackedDevice">
+<area shape="rect" id="node1" title=" " alt="" coords="379,131,594,296"/>
+<area shape="rect" id="node3" href="$d4/d6d/classSpelunx_1_1Vive_1_1OVRT__BoundTrackedObject.html" title="Maps tracked OpenVR poses to transform by serial number bindings. Can use tracker roles defined by St..." alt="" coords="5,432,248,524"/>
+<area shape="rect" id="node4" href="$db/d50/classSpelunx_1_1Vive_1_1OVRT__TrackedObject.html" title="Maps tracked OpenVR poses to transform by device index." alt="" coords="272,432,475,524"/>
+<area shape="rect" id="node5" href="$d7/df0/classSpelunx_1_1Vive_1_1ViveController.html" title=" " alt="" coords="499,344,703,612"/>
+<area shape="rect" id="node6" href="$df/d90/classSpelunx_1_1Vive_1_1ViveTracker.html" title=" " alt="" coords="728,417,952,539"/>
+<area shape="rect" id="node2" title=" " alt="" coords="425,5,549,83"/>
+</map>

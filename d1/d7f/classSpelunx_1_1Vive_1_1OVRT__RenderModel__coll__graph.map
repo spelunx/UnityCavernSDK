@@ -1,0 +1,8 @@
+<map id="Spelunx.Vive.OVRT_RenderModel" name="Spelunx.Vive.OVRT_RenderModel">
+<area shape="rect" id="node1" title=" " alt="" coords="20,665,231,977"/>
+<area shape="rect" id="node2" title=" " alt="" coords="61,5,185,83"/>
+<area shape="rect" id="node3" href="$df/d93/classSpelunx_1_1Vive_1_1OVRT__TrackedDevice.html" title=" " alt="" coords="16,307,230,472"/>
+<area shape="rect" id="node5" href="$df/d93/classSpelunx_1_1Vive_1_1OVRT__TrackedDevice.html" title=" " alt="" coords="166,132,381,283"/>
+<area shape="rect" id="node4" href="$db/d50/classSpelunx_1_1Vive_1_1OVRT__TrackedObject.html" title="Maps tracked OpenVR poses to transform by device index." alt="" coords="190,496,392,588"/>
+<area shape="rect" id="node6" title=" " alt="" coords="416,503,475,581"/>
+</map>

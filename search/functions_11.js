@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['setbodytracker_0',['SetBodyTracker',['../da/dca/classSpelunx_1_1Orbbec_1_1BodyTrackerManager.html#a0fdeb091963b1ca966bca770a2d0f6bf',1,'Spelunx.Orbbec.BodyTrackerManager.SetBodyTracker()'],['../dc/d9e/classSpelunx_1_1Orbbec_1_1BodyTrackerAvatar.html#aafbede0730bda76852ae0b15a5967f51',1,'Spelunx.Orbbec.BodyTrackerAvatar.SetBodyTracker()']]],
+  ['setcavernrenderer_1',['SetCavernRenderer',['../d3/d86/classSpelunx_1_1Vive_1_1CavernInteraction.html#adccdd089a6fc8f9e3771bc94806cc13d',1,'Spelunx::Vive::CavernInteraction']]],
+  ['setcavernrenderer_2',['setCavernRenderer',['../d8/d78/classSpelunx_1_1WorldSpaceMeshCanvas.html#ae27e0dcb1572ae2147e2621250de9e00',1,'Spelunx::WorldSpaceMeshCanvas']]],
+  ['setdeadzoneradius_3',['SetDeadZoneRadius',['../da/d7d/classSpelunx_1_1Vive_1_1OrbitCavernInteraction.html#adc7a8c9d52416215f8976888faa4e892',1,'Spelunx::Vive::OrbitCavernInteraction']]],
+  ['setdeviceindex_4',['SetDeviceIndex',['../d6/d9b/classSpelunx_1_1Vive_1_1OVRT__RenderModel.html#a1c70e042581cb65742277e92aea6de6f',1,'Spelunx::Vive::OVRT_RenderModel']]],
+  ['setdeviceserial_5',['SetDeviceSerial',['../da/dca/classSpelunx_1_1Orbbec_1_1BodyTrackerManager.html#af5564608b22ac008eb958e58722c2206',1,'Spelunx::Orbbec::BodyTrackerManager']]],
+  ['setevadedistance_6',['SetEvadeDistance',['../d7/d67/classSpelunx_1_1Vive_1_1EvadeInteraction.html#a5e6136a5afb793bdb012b04445e256b5',1,'Spelunx::Vive::EvadeInteraction']]],
+  ['setlookatcentre_7',['SetLookAtCentre',['../da/d7d/classSpelunx_1_1Vive_1_1OrbitCavernInteraction.html#a22041b79e6c74db6af3eae5f1331665c',1,'Spelunx::Vive::OrbitCavernInteraction']]],
+  ['setmaterial_8',['SetMaterial',['../d3/d01/classSpelunx_1_1CavernRenderPass.html#a96feb8f9cf99bfce00c01332c8287780',1,'Spelunx.CavernRenderPass.SetMaterial()'],['../da/da0/classSpelunx_1_1DirectCanvasRenderPass.html#a3992b2a1e31f1a2ba0ceb44f1fd89932',1,'Spelunx.DirectCanvasRenderPass.SetMaterial()']]],
+  ['setmeshrendererstate_9',['SetMeshRendererState',['../d6/d9b/classSpelunx_1_1Vive_1_1OVRT__RenderModel.html#a5775ae04e237b30a00f9f6e587914ebb',1,'Spelunx::Vive::OVRT_RenderModel']]],
+  ['setmovementspeed_10',['SetMovementSpeed',['../d7/d67/classSpelunx_1_1Vive_1_1EvadeInteraction.html#a3e45604c7fe177f09a508d7238ceb0d5',1,'Spelunx::Vive::EvadeInteraction']]],
+  ['setorbitmode_11',['SetOrbitMode',['../da/d7d/classSpelunx_1_1Vive_1_1OrbitCavernInteraction.html#ab7f2ea44068f9f433800531b84561594',1,'Spelunx::Vive::OrbitCavernInteraction']]],
+  ['setorigin_12',['SetOrigin',['../df/d90/classSpelunx_1_1Vive_1_1ViveTracker.html#a17ce78cfacf4c1a9f448ec566350b828',1,'Spelunx.Vive.ViveTracker.SetOrigin()'],['../d7/df0/classSpelunx_1_1Vive_1_1ViveController.html#a0fa8e8361132729d930fa544b24db4ad',1,'Spelunx.Vive.ViveController.SetOrigin()']]],
+  ['setpositionoffset_13',['SetPositionOffset',['../da/df9/classSpelunx_1_1Vive_1_1FollowInteraction.html#aca5cb5c0d67d584709cfae5c9db35c97',1,'Spelunx::Vive::FollowInteraction']]],
+  ['setsensororientation_14',['SetSensorOrientation',['../da/dca/classSpelunx_1_1Orbbec_1_1BodyTrackerManager.html#a0ab732983ffb6c89b97ba042be1f8b4b',1,'Spelunx::Orbbec::BodyTrackerManager']]],
+  ['setskeletonrootjoint_15',['SetSkeletonRootJoint',['../dc/d9e/classSpelunx_1_1Orbbec_1_1BodyTrackerAvatar.html#a1079c2df920269782c3a4426e5e98fea',1,'Spelunx::Orbbec::BodyTrackerAvatar']]],
+  ['setstereoscopicmode_16',['SetStereoscopicMode',['../db/d6f/classSpelunx_1_1CavernRenderer.html#a76d510dbabcd41c809222dd9eb09e190',1,'Spelunx::CavernRenderer']]],
+  ['settarget_17',['SetTarget',['../df/dd7/classSpelunx_1_1Vive_1_1Interaction.html#a099c60154df3ee630b782449f71634bc',1,'Spelunx.Vive.Interaction.SetTarget()'],['../d7/da5/classSpelunx_1_1Vive_1_1FollowMotion.html#adc6d9bd20409df239d5205977bf69935',1,'Spelunx.Vive.FollowMotion.SetTarget(Transform target, bool withOffset)'],['../d7/da5/classSpelunx_1_1Vive_1_1FollowMotion.html#a2e4a931b867594b8112c1b3fe26264d8',1,'Spelunx.Vive.FollowMotion.SetTarget(Transform target)']]],
+  ['settriggerdistance_18',['SetTriggerDistance',['../d7/d67/classSpelunx_1_1Vive_1_1EvadeInteraction.html#a7e4fef89eacf132c0ece919b535fe044',1,'Spelunx::Vive::EvadeInteraction']]],
+  ['showexample_19',['ShowExample',['../d2/de4/classSpelunx_1_1OrbbecToolsPanel.html#ab575073023b0ac4d18f3320bae9a2eac',1,'Spelunx.OrbbecToolsPanel.ShowExample()'],['../d7/d07/classSpelunx_1_1ViveToolsPanel.html#a6cd4420ffa6122705aecb9317f3b76c9',1,'Spelunx.ViveToolsPanel.ShowExample()']]],
+  ['showskeleton_20',['ShowSkeleton',['../d2/d27/classSpelunx_1_1Orbbec_1_1BodyTracker.html#aa48e7b1e2d21c93094f4f3994eb6c472',1,'Spelunx::Orbbec::BodyTracker']]],
+  ['showwindow_21',['ShowWindow',['../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a6a9e8495a1072edf738b48af5a65c40c',1,'Spelunx::CavernToolsPanel']]],
+  ['slerp_22',['Slerp',['../d7/d48/classSpelunx_1_1Vive_1_1OVRT__Utils.html#a49a5542db738f6e53dc92dba58a0215f',1,'Spelunx::Vive::OVRT_Utils']]],
+  ['solvequadraticequation_23',['SolveQuadraticEquation',['../da/d53/classSpelunx_1_1MathsUtil.html#a5b29830acf6145cac2c1940f3bbffd37',1,'Spelunx::MathsUtil']]]
+];

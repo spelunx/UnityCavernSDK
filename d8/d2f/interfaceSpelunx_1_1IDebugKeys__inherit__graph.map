@@ -1,0 +1,6 @@
+<map id="Spelunx.IDebugKeys" name="Spelunx.IDebugKeys">
+<area shape="rect" id="node1" title=" " alt="" coords="250,5,405,97"/>
+<area shape="rect" id="node2" href="$d3/daf/classSampleDebugKeys.html" title=" " alt="" coords="5,145,204,252"/>
+<area shape="rect" id="node3" href="$d3/d24/classSpelunx_1_1CavernDebugKeys.html" title=" " alt="" coords="229,145,426,252"/>
+<area shape="rect" id="node4" href="$de/d71/classSpelunx_1_1Vive_1_1ViveDebugKeys.html" title="Helpful debug information (both keyboard shortcuts and GUI) for Vive Trackers. This also adds the abi..." alt="" coords="450,153,663,245"/>
+</map>

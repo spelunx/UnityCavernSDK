@@ -1,0 +1,6 @@
+<map id="Spelunx.Vive.Zones" name="Spelunx.Vive.Zones">
+<area shape="rect" id="node1" title=" " alt="" coords="115,477,265,569"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,129,83"/>
+<area shape="rect" id="node3" href="$db/d6f/classSpelunx_1_1CavernRenderer.html" title=" " alt="" coords="89,132,291,415"/>
+<area shape="rect" id="node4" href="$d3/dbb/structSpelunx_1_1Vive_1_1Zones_1_1ZonedTracker.html" title=" " alt="" coords="315,213,511,334"/>
+</map>
