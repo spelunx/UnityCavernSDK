@@ -479,6 +479,7 @@ namespace Spelunx
 
             /******************* Looking North *******************/
             monoMask |= frontMask;
+            // For the enableConvergence = true case, much of the face cannot be seen. In the future, we can consider using a stencil buffer to disable rendering on the unseen portions of the face.
             westMask |= frontMask | (enableConvergence ? rightMask : 0); // Left Eye
             eastMask |= frontMask | (enableConvergence ? leftMask : 0); // Right Eye
 
