@@ -510,6 +510,123 @@ namespace Spelunx
             }
 
             /******************* Top & Bottom Faces *******************/
+            /*
+            Cubemap rendered from eye's position:
+                  ----------------------------------
+                  |                                |
+                  |                                |
+                  |                                |
+                  |                                |
+                  |                                |
+                  |                                |
+                  |             (-0-)              |
+                  |                                |
+                  |                                |
+                  |                                |
+                  |                                |
+                  |                                |
+                  |                                |
+                  ----------------------------------
+
+            Find the horizontal distance from the eye to the screen.
+            Find the vertical distance from the eye to the top of the screen.
+                                                  ^| (Top of Screen)
+                                                 / |
+                                                /  |
+                                               /   |
+                                              /    |
+                                             /     |
+                                            /      |
+                                           /       | Vertical
+                                          /        |
+                                         /         |
+                                        /          |
+                                       /           |
+                                      v            |
+                                (-0-) <----------->O
+                                        Horizontal |
+                                  ^                |
+                                  |                |
+                            Badly Drawn Eye        |
+                                                   |
+                                                   |
+                                                   |
+                                                   |
+
+            Top of cubemap needs to be rendered if the horizontal distance is smaller than the vertical distance:
+                                                  ^|
+                                                 / |
+                                                /  |
+                                               /   |
+                                              /    |
+                                             /     |
+                  --------------------------/-------
+                  |                        /       |
+                  |                       /        |
+                  |                      /         |
+                  |                     /          |
+                  |                    /           |
+                  |                   v            |
+                  |             (-0-) <----------->O
+                  |                                |
+                  |                                |
+                  |                                |
+                  |                                |
+                  |                                |
+                  |                                |
+                  ----------------------------------
+
+
+            Find the horizontal distance from the eye to the screen.
+            Find the vertical distance from the eye to the bottom of the screen. (May be different from the distance to the top of the screen!)
+                                                   |
+                                                   |
+                                                   |
+                                                   |
+                                                   |
+                                                   |
+                                                   |
+                                                   | 
+                                                   |
+                                                   |
+                                                   |
+                                                   |
+                                        Horizontal |
+                                (-0-) <----------->O
+                                      ^            |
+                                  ^    \           |
+                                  |      \         | Vertical
+                            Badly Drawn Eye        |
+                                            \      |
+                                              \    |
+                                                \  |
+                                                  v|
+
+            Bottom of cubemap needs to be rendered if the horizontal distance is smaller than the vertical distance:
+                                                   |
+                                                   |
+                                                   |
+                                                   |
+                                                   |
+                                                   |
+                  ----------------------------------
+                  |                                | 
+                  |                                |
+                  |                                |
+                  |                                |
+                  |                                |
+                  |                     Horizontal |
+                  |             (-0-) <----------->O
+                  |                   ^            |
+                  |                    \           |
+                  |                      \         | Vertical
+                  |                        \       |
+                  |                         \      |
+                  |                           \    |
+                  ------------------------------\--|
+                                                  v|
+
+            */
             if (Mathf.Abs(northEastBoundary.z) < Mathf.Abs(screenTop) || // Looking North
                 Mathf.Abs(northWestBoundary.z) < Mathf.Abs(screenTop) || // Looking North
                 Mathf.Abs(southEastBoundary.z) < Mathf.Abs(screenTop) || // Looking South
