@@ -3,7 +3,7 @@
 #define CAVERN_PROJECTION_MAPPING_HLSL
 
 // Define Built-In Macros
-#define SHADERPASS SHADERPASS_BLIT
+// #define SHADERPASS SHADERPASS_BLIT
 
 // Include URP library functions.
 // URP library functions can be found via the Unity Editor in "Packages/Universal RP/Shader Library/".
@@ -44,7 +44,7 @@ int _SwapEyes;
 
 // Vertex attributes.
 // Fields are automatically populated according to their semantic. (https://docs.unity3d.com/Manual/SL-VertexProgramInputs.html)
-struct Attributes { // We can name this struct anything we want.
+struct CustomAttributes { // We can name this struct anything we want.
     float3 positionOS : POSITION; // Position in object space.
     float2 uv : TEXCOORD0; // Material texture UVs.
     uint vertexID : SV_VertexID;
@@ -59,7 +59,7 @@ struct Vert2Frag { // We can name this struct anything we want.
 };
 
 // The vertex function, runs once per vertex.
-Vert2Frag Vertex(Attributes input) {
+Vert2Frag Vertex(CustomAttributes input) {
     // Helper function from ShaderVariableFunctions.hlsl in the URP package
     VertexPositionInputs positionInputs = GetVertexPositionInputs(input.positionOS);
 

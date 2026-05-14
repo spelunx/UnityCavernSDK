@@ -56,5 +56,5 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "CavernSDK.sln"
+    "dotnet.defaultSolution": "CavernSDK.slnx"
 }

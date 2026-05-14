@@ -3,13 +3,20 @@ Shader "Spelunx/CavernProjection" {
     // By convention, properties' names are declared _PropertyName("Label In Inspector", Type) = Value.
     // List of property types: https://docs.unity3d.com/Manual/SL-Properties.html
     Properties { }
+    
 
     SubShader {
+        HLSLINCLUDE
+        #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
+        #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
+        ENDHLSL
+
         Tags {
             "RenderPipeline" = "UniversalPipeline"
             "RenderType"="Opaque"
         }
-
+        LOD 100
+        ZWrite Off Cull Off
         Pass {
             Name "Cavern Projection Mapping"
 

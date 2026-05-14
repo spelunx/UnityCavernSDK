@@ -84,8 +84,10 @@ namespace Spelunx
         private Material material = null;
         private RenderTexture[] cubemaps = null;
         private Mesh previewMesh = null;
-        private RenderTexture previewTexture = null;
+        private RTHandle previewTexture = null;
+        private RenderTexture cavernRT = null;
         private CavernRenderPass cavernRenderPass;
+        private CavernPreviewRenderPass cavernPreviewRenderPass;
 
         [HideInInspector]
         public UnityEvent settingsChanged;
@@ -151,6 +153,11 @@ namespace Spelunx
 #endif
         }
 
+        private void OnDestroy()
+        {
+            previewTexture?.Release();
+        }
+
         private void Awake()
         {
             CreateCubemaps();
@@ -158,6 +165,7 @@ namespace Spelunx
             CreatePreviewMesh();
             CreatePreviewTexture();
             cavernRenderPass = new CavernRenderPass(material);
+            cavernPreviewRenderPass = new CavernPreviewRenderPass(previewTexture);
         }
 
         private void Start()
@@ -168,7 +176,7 @@ namespace Spelunx
             eye.enabled = false;
         }
 
-        private void Update()
+        private void LateUpdate()
         {
 
             // If clampHeadPosition is true, limit the head position to be within the bounds of the circle.
@@ -188,8 +196,9 @@ namespace Spelunx
                 ear.gameObject.transform.rotation = head.transform.rotation;
             }
 
-#if UNITY_EDITOR
+            //#if UNITY_EDITOR
             // Only render if we are playing and or showing a live preview.
+            /*
             if (UnityEditor.EditorApplication.isPlaying || livePreview)
             {
                 RenderEyes();
@@ -198,9 +207,10 @@ namespace Spelunx
                     Graphics.Blit(null, previewTexture, material);
                 }
             }
-#else
+            */
+            //#else
             RenderEyes();
-#endif
+            //#endif
         }
 
         // Find out which faces of the cubemaps should be rendered. We want the minimum number of faces to reduce the rendering workload.
@@ -716,9 +726,11 @@ namespace Spelunx
             cubemaps = new RenderTexture[(int)CubemapIndex.Num];
             for (int i = 0; i < (int)CubemapIndex.Num; ++i)
             {
-                cubemaps[i] = new RenderTexture((int)cubemapResolution, (int)cubemapResolution, 32, RenderTextureFormat.ARGB32);
-                cubemaps[i].dimension = TextureDimension.Cube;
-                cubemaps[i].wrapMode = TextureWrapMode.Clamp;
+                cubemaps[i] = new RenderTexture((int)cubemapResolution, (int)cubemapResolution, 32, RenderTextureFormat.ARGB32)
+                {
+                    dimension = TextureDimension.Cube,
+                    wrapMode = TextureWrapMode.Clamp
+                };
             }
         }
 
@@ -810,9 +822,18 @@ namespace Spelunx
 
         private void CreatePreviewTexture()
         {
-            previewTexture = new RenderTexture((int)previewResolution, (int)previewResolution, 32, RenderTextureFormat.ARGB32);
-            previewTexture.dimension = TextureDimension.Tex2D;
-            previewTexture.wrapMode = TextureWrapMode.Clamp;
+            previewTexture = RTHandles.Alloc(
+                width: (int)previewResolution,
+                height: (int)previewResolution,
+                // depthBufferBits: DepthBits.Depth32,
+                // colorFormat: UnityEngine.Experimental.Rendering.GraphicsFormat.R8G8B8A8_SRGB,
+                colorFormat: UnityEngine.Experimental.Rendering.GraphicsFormatUtility.GetGraphicsFormat(RenderTextureFormat.ARGB32, true),
+                dimension: TextureDimension.Tex2D,
+                wrapMode: TextureWrapMode.Clamp
+            );
+            // previewTexture = new RenderTexture((int)previewResolution, (int)previewResolution, 32, RenderTextureFormat.ARGB32);
+            // previewTexture.dimension = TextureDimension.Tex2D;
+            // previewTexture.wrapMode = TextureWrapMode.Clamp;
         }
 
         private void OnBeginCameraRendering(ScriptableRenderContext context, Camera camera)
@@ -821,6 +842,15 @@ namespace Spelunx
             if (camera == guiCamera)
             {
                 camera.GetUniversalAdditionalCameraData().scriptableRenderer.EnqueuePass(cavernRenderPass);
+#if UNITY_EDITOR
+                // Only render if we are playing and or showing a live preview.
+
+                if (UnityEditor.EditorApplication.isPlaying || livePreview)
+                {
+                    camera.GetUniversalAdditionalCameraData().scriptableRenderer.EnqueuePass(cavernPreviewRenderPass);
+                }
+
+#endif
             }
         }
 
