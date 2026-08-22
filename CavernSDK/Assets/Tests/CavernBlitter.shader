@@ -19,10 +19,15 @@ Shader "Custom/CavernBlitter"
             #pragma vertex Vert
             #pragma fragment Frag
 
+            float4 _Region;
+            TEXTURE2D(_BaseTex);
+
             float4 Frag (Varyings input) : SV_Target
             {
-                float4 color = SAMPLE_TEXTURE2D(_BlitTexture, sampler_LinearClamp, input.texcoord).rgba;
-                return color;
+                // float4 color = SAMPLE_TEXTURE2D(_BaseTex, sampler_LinearClamp, input.texcoord).rgba;
+                // return color;
+                float2 subUV = input.texcoord * _Region.zw + _Region.xy;
+                return SAMPLE_TEXTURE2D(_BaseTex, sampler_LinearClamp, subUV);
             }
             
             ENDHLSL

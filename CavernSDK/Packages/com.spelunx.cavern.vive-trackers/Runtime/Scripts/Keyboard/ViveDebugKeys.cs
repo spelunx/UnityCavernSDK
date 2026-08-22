@@ -10,7 +10,7 @@ namespace Spelunx.Vive
     /// This also adds the ability to calibrate the rotation of all active Vive Trackers.
     /// </summary>
     [DisallowMultipleComponent]
-    public class ViveDebugKeys : MonoBehaviour, IDebugKeys
+    public class ViveDebugKeys : MonoBehaviour, ICavernDebugKeysFeature
     {
         [Header("Input Actions")]
         [SerializeField, Tooltip("Calibrate the rotations of all vive trackers. Hold them upright in the center of the CAVERN and pointed towards the center of the screen.")]

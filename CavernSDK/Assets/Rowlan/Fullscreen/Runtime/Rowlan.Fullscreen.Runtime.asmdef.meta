@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 7e394ddb093d5f84f832298a8a3b91c0
+AssemblyDefinitionImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 271989
+  packageName: Fullscreen Editor Play Mode - FREE
+  packageVersion: 1.8.0
+  assetPath: Assets/Rowlan/Fullscreen/Runtime/Rowlan.Fullscreen.Runtime.asmdef
+  uploadId: 924880

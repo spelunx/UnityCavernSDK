@@ -1,0 +1,19 @@
+{
+    "name": "Rowlan.Fullscreen.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7e394ddb093d5f84f832298a8a3b91c0",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

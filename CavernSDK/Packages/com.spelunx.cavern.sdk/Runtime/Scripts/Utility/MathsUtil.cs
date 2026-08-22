@@ -1,12 +1,13 @@
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 
-namespace Spelunx {
+namespace Spelunx
+{
     /// <summary>
     /// Utility class for maths functions.
     /// </summary>
-    public class MathsUtil {
+    public class MathsUtil
+    {
         private MathsUtil() { }
 
         /// <summary>
@@ -20,7 +21,8 @@ namespace Spelunx {
         /// Returns a list with 1 element if the equation has 1 solution.
         /// Returns a list with 2 elements if the equation has 2 solution.
         /// </returns>
-        public static List<float> SolveQuadraticEquation(float a, float b, float c) {
+        public static List<float> SolveQuadraticEquation(float a, float b, float c)
+        {
             List<float> solutions = new List<float>();
 
             // Case 1: The equation has no solution.
@@ -29,7 +31,8 @@ namespace Spelunx {
 
             // Case 2: The equation has 1 solution.
             float u = (-b - Mathf.Sqrt(b * b - 4.0f * a * c)) / (2.0f * a);
-            if (determinant == 0.0f) {
+            if (determinant == 0.0f)
+            {
                 solutions.Add(u);
                 return solutions;
             }

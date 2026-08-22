@@ -13,7 +13,7 @@ RenderTexture:
   m_IsAlphaChannelOptional: 0
   serializedVersion: 6
   m_Width: 5760
-  m_Height: 2160
+  m_Height: 1200
   m_AntiAliasing: 1
   m_MipCount: -1
   m_DepthStencilFormat: 94

@@ -1,0 +1,24 @@
+{
+    "name": "Spelunx.XR.Vive.Tracking",
+    "rootNamespace": "Spelunx.XR.Vive",
+    "references": [
+        "Unity.XR.OpenXR",
+        "Unity.InputSystem",
+        "Unity.XR.CoreUtils",
+        "Spelunx.Cavern.SDK"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "WSA",
+        "WindowsStandalone32",
+        "WindowsStandalone64"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

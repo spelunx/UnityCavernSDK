@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
@@ -19,7 +20,7 @@ namespace Spelunx.Fullscreen
         private static readonly Type ContainerWindowType = Type.GetType("UnityEditor.ContainerWindow,UnityEditor");
         private static readonly PropertyInfo ShowToolbarProperty = GameViewType.GetProperty("showToolbar", BindingFlags.Instance | BindingFlags.NonPublic);
         // hack to prevent double-rendering while in fullscreen
-        private readonly static int DISPLAY_0 = 0; // target gameview display
+        private readonly static int DISPLAY_0 = 1; // target gameview display
         private readonly static int DISPLAY_7 = 7; // display gameview doesn't render to
         static EditorWindow instance;
 
@@ -80,11 +81,19 @@ namespace Spelunx.Fullscreen
                 instance = (EditorWindow)ScriptableObject.CreateInstance(GameViewType);
                 var containerWindow = ScriptableObject.CreateInstance(ContainerWindowType);
                 var hostView = ScriptableObject.CreateInstance(HostViewType);
+                FindMethod(instance.GetType(), "SetTargetDisplay", typeof(int))?.Invoke(instance, new object[] { DISPLAY_0 });
 
                 ShowToolbarProperty?.SetValue(instance, false);
-
-                Vector2 position = Vector2.zero;
-                Vector2 resolution = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height) / EditorGUIUtility.pixelsPerPoint;
+                List<DisplayInfo> screens = new();
+                Screen.GetDisplayLayout(screens);
+                // foreach (var thing in screens)
+                // {
+                //     Debug.Log($"Display width: {thing.width}\theight: {thing.height}\t dpi: {thing.physicalDpi}");
+                // }
+                // Vector2 position = Vector2.zero;
+                // Vector2 resolution = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height) / EditorGUIUtility.pixelsPerPoint;
+                Vector2 position = new(-screens[1].width, 0);
+                Vector2 resolution = new(screens[1].width, screens[1].height);// / EditorGUIUtility.pixelsPerPoint;
 
                 FindProperty(HostViewType, "actualView")?.SetValue(hostView, instance);
 

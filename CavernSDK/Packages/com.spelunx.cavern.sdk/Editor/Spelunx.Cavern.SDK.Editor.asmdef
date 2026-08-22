@@ -2,7 +2,9 @@
     "name": "Spelunx.Cavern.SDK.Editor",
     "rootNamespace": "Spelunx",
     "references": [
-        "Spelunx.Cavern.SDK"
+        "Spelunx.Cavern.SDK",
+        "Unity.RenderPipelines.Universal.Editor",
+        "Unity.RenderPipelines.Core.Editor"
     ],
     "includePlatforms": [
         "Editor"

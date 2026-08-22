@@ -20,6 +20,8 @@ Shader "Spelunx/CavernProjection" {
         Pass {
             Name "Cavern Projection Mapping"
 
+            Blend SrcAlpha OneMinusSrcAlpha
+
             HLSLPROGRAM // Begin HLSL code.
 
             // Tell the shader to find the function named "Vertex" in our HLSL code, and use it as the vertex function.

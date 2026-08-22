@@ -73,7 +73,7 @@ namespace Spelunx
 
         private void RoundUISetup(ClickEvent evt)
         {
-            CavernRenderer cavernRenderer = FindFirstObjectByType<CavernRenderer>();
+            CavernSetup cavernSetup = FindFirstObjectByType<CavernSetup>();
 
             // load from path
             GameObject cavernUIPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/CavernUI.prefab", typeof(GameObject));
@@ -83,10 +83,10 @@ namespace Spelunx
             GameObject roundCavernMeshRendererInstance = (GameObject)PrefabUtility.InstantiatePrefab(roundCavernMeshRendererPrefab as GameObject);
 
             WorldSpaceMeshCanvas meshCanvas = roundCavernMeshRendererInstance.GetComponent<WorldSpaceMeshCanvas>();
-            meshCanvas.setCavernRenderer(cavernRenderer);
+            meshCanvas.SetCavernRenderer(cavernSetup);
 
             // set default parameters of roundUI mesh
-            meshCanvas.transform.parent = cavernRenderer.transform;
+            meshCanvas.transform.parent = cavernSetup.transform;
             meshCanvas.transform.localPosition = Vector3.zero;
             meshCanvas.transform.localRotation = Quaternion.identity;
 

@@ -1,0 +1,23 @@
+{
+    "name": "Spelunx.XR.Vive.Editor",
+    "rootNamespace": "Spelunx.XR.Vive",
+    "references": [
+        "Spelunx.Vive.NewTracking",
+        "Unity.XR.OpenXR",
+        "Unity.XR.OpenXR.Editor",
+        "Spelunx.Cavern.SDK.Editor",
+        "Spelunx.Cavern.SDK",
+        "Unity.XR.Management.Editor"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
