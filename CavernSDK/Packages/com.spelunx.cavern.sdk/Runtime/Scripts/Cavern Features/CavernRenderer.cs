@@ -4,6 +4,8 @@ using UnityEngine.Rendering;
 namespace Spelunx
 {
     [ExecuteInEditMode]
+    [AddComponentMenu("Cavern/Features/CavernRenderer")]
+    [DisallowMultipleComponent]
     public class CavernRenderer : CavernFeature
     {
         private void OnEnable()

@@ -7,6 +7,8 @@ using UnityEngine.InputSystem;
 
 namespace Spelunx
 {
+    [AddComponentMenu("Cavern/Features/Cavern Debug Keys")]
+    [DisallowMultipleComponent]
     public class CavernDebugKeysFeature : CavernFeature, ICavernDebugKeysFeature
     {
         public override string Name => "Cavern Debug Keys Feature";

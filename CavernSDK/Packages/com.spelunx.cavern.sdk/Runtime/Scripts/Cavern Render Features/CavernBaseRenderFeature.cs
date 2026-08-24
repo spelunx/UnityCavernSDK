@@ -7,6 +7,7 @@ using UnityEngine.Rendering.RenderGraphModule.Util;
 
 namespace Spelunx
 {
+    [AddComponentMenu("Cavern/Render Features/Base Render Feature")]
     public class CavernBaseRenderFeature : CavernFeature, ICavernRenderFeature
     {
         [SerializeField] private Shader cubeMapRenderShader;

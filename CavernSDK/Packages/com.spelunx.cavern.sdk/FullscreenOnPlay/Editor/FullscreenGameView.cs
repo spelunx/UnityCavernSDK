@@ -56,7 +56,7 @@ namespace Spelunx.Fullscreen
             FindMethod(gameView.GetType(), "SetTargetDisplay", typeof(int))?.Invoke(gameView, new object[] { displayIndex });
         }
 
-        public static void EnterFullscreen()
+        public static void EnterFullscreen(bool secondaryMonitor = true)
         {
             if (GameViewType == null)
             {
@@ -90,10 +90,18 @@ namespace Spelunx.Fullscreen
                 // {
                 //     Debug.Log($"Display width: {thing.width}\theight: {thing.height}\t dpi: {thing.physicalDpi}");
                 // }
-                // Vector2 position = Vector2.zero;
-                // Vector2 resolution = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height) / EditorGUIUtility.pixelsPerPoint;
-                Vector2 position = new(-screens[1].width, 0);
-                Vector2 resolution = new(screens[1].width, screens[1].height);// / EditorGUIUtility.pixelsPerPoint;
+                Vector2 position;
+                Vector2 resolution;
+                if (secondaryMonitor)
+                {
+                    position = new(-screens[1].width, 0);
+                    resolution = new(screens[1].width, screens[1].height);// / EditorGUIUtility.pixelsPerPoint;
+                }
+                else
+                {
+                    position = Vector2.zero;
+                    resolution = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height) / EditorGUIUtility.pixelsPerPoint;
+                }
 
                 FindProperty(HostViewType, "actualView")?.SetValue(hostView, instance);
 

@@ -6,11 +6,12 @@ using UnityEngine.Rendering.Universal;
 namespace Spelunx
 {
     [ExecuteInEditMode]
+    [AddComponentMenu("Cavern/Render Features/Screenspace UI Feature")]
     public class CavernScreenSpaceUIFeature : CavernFeature, ICavernRenderFeature
     {
-        [SerializeField] private Camera uiCamera;
+        public Camera uiCamera;
         // private RTHandle uiRTHandle;
-        [SerializeField] private Shader screenSpaceUIShader;
+        public Shader screenSpaceUIShader;
         [SerializeField, Range(-0.5f, 0.5f)] private float offsetFor3d = 0;
         // [SerializeField, Tooltip("Change offset for 3d to look like it's at the screen")] private bool setOffsetAtScreenDistance;
         private CavernScreenSpaceUIRenderPass _renderPass;
@@ -43,9 +44,9 @@ namespace Spelunx
             CreateMaterial();
         }
 
-        private void CreateMaterial()
+        public void CreateMaterial()
         {
-
+            if (screenSpaceUIShader == null) return;
             uiRenderTexture = new RenderTexture(width: cavernSetup.ScreenDimensions.x, height: cavernSetup.ScreenDimensions.y, depth: 24, RenderTextureFormat.ARGB32)
             {
                 dimension = TextureDimension.Tex2D,

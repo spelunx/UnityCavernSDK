@@ -1,13 +1,12 @@
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.RenderGraphModule;
-using UnityEngine.Rendering.RenderGraphModule.Util;
 using UnityEngine.Rendering.Universal;
 
 namespace Spelunx
 {
     [ExecuteInEditMode]
+    [AddComponentMenu("Cavern/Render Features/Preview Feature")]
     public class CavernPreviewFeature : CavernFeature, ICavernRenderFeature
     {
         public enum PreviewEye { Left, Right }

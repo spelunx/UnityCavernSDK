@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 namespace Spelunx
 {
+    [AddComponentMenu("Cavern/CavernSetup")]
     public class CavernSetup : MonoBehaviour
     {
         public enum StereoscopicMode

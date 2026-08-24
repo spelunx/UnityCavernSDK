@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 293516998942405453}
   - component: {fileID: 5787715634549412718}
   - component: {fileID: 7497226676155790311}
-  - component: {fileID: 6921479507638707772}
+  - component: {fileID: -737750080213839378}
   m_Layer: 0
   m_Name: RoundCavernMeshRenderer
   m_TagString: Untagged
@@ -62,6 +62,8 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -83,11 +85,13 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &6921479507638707772
+--- !u!114 &-737750080213839378
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -96,9 +100,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 721272140978977715}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 065b984375fcdce479a6c984c658b2de, type: 3}
+  m_Script: {fileID: 11500000, guid: 506381b7a7dc5a84bb7634fbb12bc1e9, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: 
-  cavernRenderer: {fileID: 0}
+  m_EditorClassIdentifier: Spelunx.Cavern.SDK::Spelunx.CavernRoundWorldSpaceUIFeature
+  cavernSetup: {fileID: 0}
   distance: 1.2
   autoposition: 1
+  uiCamera: {fileID: 0}
+  baseUIRenderMaterial: {fileID: 2100000, guid: 19d045dfe37d2dd4d9a482c1d8570483, type: 2}

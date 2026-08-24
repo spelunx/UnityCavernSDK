@@ -4,6 +4,7 @@ using UnityEngine.Rendering;
 namespace Spelunx
 {
     [RequireComponent(typeof(MeshRenderer), typeof(MeshFilter))]
+    [AddComponentMenu("Cavern/Features/Round Worldspace UI")]
     public class CavernRoundWorldSpaceUIFeature : CavernFeature
     {
         [SerializeField, Tooltip("Distance from the screen to render. 0 is purely at the center, 1 is at the boundry"), Min(0)]
@@ -11,8 +12,8 @@ namespace Spelunx
 
         [SerializeField, Tooltip("Should the round canvas be automatically positioned around the CAVERN?")]
         private bool autoposition = true;
-        [SerializeField] private Camera uiCamera;
-        [SerializeField] private Material baseUIRenderMaterial;
+        public Camera uiCamera;
+        public Material baseUIRenderMaterial;
         private RenderTexture uiRenderTexture;
         private Material uiRenderMat;
         private bool shouldUpdateMesh = false;
