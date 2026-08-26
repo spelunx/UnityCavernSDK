@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 namespace Spelunx
 {
     [ExecuteInEditMode]
-    [AddComponentMenu("Cavern/Render Features/Screenspace UI Feature")]
+    [AddComponentMenu("Cavern/Render Features/CAVERN Screenspace UI Feature")]
     public class CavernScreenSpaceUIFeature : CavernFeature, ICavernRenderFeature
     {
         public Camera uiCamera;

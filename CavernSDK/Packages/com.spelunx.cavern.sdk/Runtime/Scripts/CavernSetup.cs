@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 namespace Spelunx
 {
-    [AddComponentMenu("Cavern/CavernSetup")]
+    [AddComponentMenu("Cavern/CAVERN Setup")]
     public class CavernSetup : MonoBehaviour
     {
         public enum StereoscopicMode
@@ -138,6 +138,14 @@ namespace Spelunx
                 ear.gameObject.transform.SetPositionAndRotation(head.transform.position, head.transform.rotation);
             }
         }
+
+#if UNITY_EDITOR
+        void OnValidate()
+        {
+            settingsChanged.Invoke();
+        }
+
+#endif
 
         // generates a mesh used for the preview or other uses
         public Mesh GenerateMesh()

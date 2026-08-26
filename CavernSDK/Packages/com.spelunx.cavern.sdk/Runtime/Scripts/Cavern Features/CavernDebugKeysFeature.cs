@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace Spelunx
 {
-    [AddComponentMenu("Cavern/Features/Cavern Debug Keys")]
+    [AddComponentMenu("Cavern/Features/CAVERN Debug Keys")]
     [DisallowMultipleComponent]
     public class CavernDebugKeysFeature : CavernFeature, ICavernDebugKeysFeature
     {
@@ -128,8 +128,9 @@ namespace Spelunx
         // bind the proper callbacks to each action.performed
         // using the saved key managers
         // This must happen in play mode, not in edit mode, or it won't work.
-        public void Awake()
+        public override void Awake()
         {
+            base.Awake();
             quit.performed += QuitAction;
             help.performed += HelpAction;
             swapEyes.performed += SwapEyesAction;

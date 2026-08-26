@@ -20,7 +20,7 @@ namespace Spelunx.Fullscreen
         private static readonly Type ContainerWindowType = Type.GetType("UnityEditor.ContainerWindow,UnityEditor");
         private static readonly PropertyInfo ShowToolbarProperty = GameViewType.GetProperty("showToolbar", BindingFlags.Instance | BindingFlags.NonPublic);
         // hack to prevent double-rendering while in fullscreen
-        private readonly static int DISPLAY_0 = 1; // target gameview display
+        private readonly static int DISPLAY_0 = 0; // target gameview display
         private readonly static int DISPLAY_7 = 7; // display gameview doesn't render to
         static EditorWindow instance;
 
@@ -56,7 +56,7 @@ namespace Spelunx.Fullscreen
             FindMethod(gameView.GetType(), "SetTargetDisplay", typeof(int))?.Invoke(gameView, new object[] { displayIndex });
         }
 
-        public static void EnterFullscreen(bool secondaryMonitor = true)
+        public static void EnterFullscreen(int whichDisplay = 1)
         {
             if (GameViewType == null)
             {
@@ -73,7 +73,7 @@ namespace Spelunx.Fullscreen
             {
                 instance.Close();
                 instance = null;
-                SetGameViewTargetDisplay(DISPLAY_0);
+                SetGameViewTargetDisplay(whichDisplay);
             }
             else
             {
@@ -81,7 +81,7 @@ namespace Spelunx.Fullscreen
                 instance = (EditorWindow)ScriptableObject.CreateInstance(GameViewType);
                 var containerWindow = ScriptableObject.CreateInstance(ContainerWindowType);
                 var hostView = ScriptableObject.CreateInstance(HostViewType);
-                FindMethod(instance.GetType(), "SetTargetDisplay", typeof(int))?.Invoke(instance, new object[] { DISPLAY_0 });
+                FindMethod(instance.GetType(), "SetTargetDisplay", typeof(int))?.Invoke(instance, new object[] { whichDisplay });
 
                 ShowToolbarProperty?.SetValue(instance, false);
                 List<DisplayInfo> screens = new();
@@ -92,7 +92,7 @@ namespace Spelunx.Fullscreen
                 // }
                 Vector2 position;
                 Vector2 resolution;
-                if (secondaryMonitor)
+                if (whichDisplay == 1)
                 {
                     position = new(-screens[1].width, 0);
                     resolution = new(screens[1].width, screens[1].height);// / EditorGUIUtility.pixelsPerPoint;
@@ -131,11 +131,11 @@ namespace Spelunx.Fullscreen
         }
 
 
-        public static void SetFullscreen(bool fullscreen)
+        public static void SetFullscreen(bool fullscreen, int monitor = 1)
         {
             if (instance == null && fullscreen)
             {
-                EnterFullscreen();
+                EnterFullscreen(monitor);
             }
             else if (instance != null && !fullscreen)
             {
@@ -146,7 +146,15 @@ namespace Spelunx.Fullscreen
         private static void CloseFullscreenAfterDelay()
         {
             instance.Close();
-            SetGameViewTargetDisplay(DISPLAY_0);
+            int whichDisplay = EditorPrefs.GetInt(AutoActivateFullscreenPreview.IsFullscreenPreviewEnabledKey, -1);
+            if (whichDisplay >= 0)
+            {
+                SetGameViewTargetDisplay(whichDisplay);
+            }
+            else
+            {
+                SetGameViewTargetDisplay(DISPLAY_0);
+            }
             EditorApplication.delayCall -= CloseFullscreenAfterDelay;
         }
 

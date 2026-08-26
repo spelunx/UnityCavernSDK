@@ -174,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 8507333386630629321, guid: b8ac2475781bc8a4fbd638ba928d385a, type: 3}
       propertyPath: m_TargetTexture
       value: 
-      objectReference: {fileID: 1774411361}
+      objectReference: {fileID: 332778541}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -253,6 +253,10 @@ PrefabInstance:
       propertyPath: cavernSetup
       value: 
       objectReference: {fileID: 290342773}
+    - target: {fileID: 8224165470927984894, guid: cb3b88902e09eb54191b6342f4fd1017, type: 3}
+      propertyPath: m_RenderPostProcessing
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -293,7 +297,7 @@ MonoBehaviour:
   uiCamera: {fileID: 8882812}
   screenSpaceUIShader: {fileID: -6465566751694194690, guid: c533199a972017549a6f1d30b5130b04, type: 3}
   offsetFor3d: 0
---- !u!84 &1774411361
+--- !u!84 &332778541
 RenderTexture:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

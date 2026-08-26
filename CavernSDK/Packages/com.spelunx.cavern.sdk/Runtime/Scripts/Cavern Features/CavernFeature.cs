@@ -43,7 +43,7 @@ namespace Spelunx
                 return;
             }
 
-            Debug.LogWarning("Cavern Feature requires a CavernSetup component in parent");
+            // Debug.LogWarning("Cavern Feature requires a CavernSetup component in parent");
         }
     }
 }

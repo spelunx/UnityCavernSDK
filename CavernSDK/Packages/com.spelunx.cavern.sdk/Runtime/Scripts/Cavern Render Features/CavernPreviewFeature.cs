@@ -6,7 +6,7 @@ using UnityEngine.Rendering.Universal;
 namespace Spelunx
 {
     [ExecuteInEditMode]
-    [AddComponentMenu("Cavern/Render Features/Preview Feature")]
+    [AddComponentMenu("Cavern/Render Features/CAVERN Preview Feature")]
     public class CavernPreviewFeature : CavernFeature, ICavernRenderFeature
     {
         public enum PreviewEye { Left, Right }
