@@ -10,14 +10,21 @@ namespace Spelunx
         [SerializeField, Tooltip("Distance from the screen to render. 0 is purely at the center, 1 is at the boundry"), Min(0)]
         private float distance = 1.0f;
 
-        [SerializeField, Tooltip("Should the round canvas be automatically positioned around the CAVERN?")]
-        private bool autoposition = true;
+        [SerializeField, Tooltip("Should the height of the round canvas be automatically positioned around the CAVERN?")]
+        private AutopositionMode autoposition = AutopositionMode.CENTER_ON_CAVERN;
         public Camera uiCamera;
         public Material baseUIRenderMaterial;
         private RenderTexture uiRenderTexture;
         private Material uiRenderMat;
         private bool shouldUpdateMesh = false;
         private Mesh mesh;
+
+        public enum AutopositionMode
+        {
+            CENTER_ON_CAVERN,
+            CORRECT_FROM_HEAD,
+            OFF
+        }
 
         // void Create()
         // {
@@ -83,12 +90,24 @@ namespace Spelunx
                 UpdateMesh();
                 shouldUpdateMesh = false;
             }
-            if (autoposition)
+            switch (autoposition)
             {
-                // center the mesh on the cavern's center by moving the y position down based on the difference in cavern height vs mesh height
-                float yOffset = -cavernSetup.CavernHeight * (distance - 1) / 2;
-                transform.SetLocalPositionAndRotation(new Vector3(0, yOffset, 0), Quaternion.identity);
-                // transform.localPosition = new(transform.localPosition.x, yOffset, transform.localPosition.z);
+                case AutopositionMode.CENTER_ON_CAVERN:
+                    {
+                        // center the mesh on the cavern's center by moving the y position down based on the difference in cavern height vs mesh height
+                        // The mesh generation already deals with the cavern elevation
+                        float yOffset = cavernSetup.CavernHeight * (1 - distance) / 2;
+                        transform.SetLocalPositionAndRotation(new Vector3(0, yOffset, 0), Quaternion.identity);
+                        break;
+                    }
+                case AutopositionMode.CORRECT_FROM_HEAD:
+                    {
+                        // move the mesh to be completely in the view of the head
+                        // float yOffset = cavernSetup.CavernHeight * (1 - distance) * (cavernSetup.GetHead().transform.localPosition.y / cavernSetup.CavernHeight);
+                        float yOffset = cavernSetup.GetHead().transform.localPosition.y * (1 - distance);
+                        transform.SetLocalPositionAndRotation(new Vector3(0, yOffset, 0), Quaternion.identity);
+                        break;
+                    }
             }
         }
 
