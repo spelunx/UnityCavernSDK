@@ -6,8 +6,8 @@
   "description": "A newer version of the Spelunx Vive Tracking package, using OpenXR instead of OpenVR.",
   "dependencies": {
     "com.spelunx.cavern.sdk": "2.0.0",
-    "com.unity.xr.openxr": "1.16.1",
-    "com.unity.xr.management": "4.5.2",
+    "com.unity.xr.openxr": "1.17.1",
+    "com.unity.xr.management": "4.6.1",
     "com.unity.inputsystem": "1.19.0",
     "com.unity.xr.interaction.toolkit": "3.4.1"
   },
