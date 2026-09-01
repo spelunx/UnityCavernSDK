@@ -6,6 +6,7 @@ namespace Spelunx.XR.Vive
      * This script assumes the CAVERN screen is a mirror, and the object holding this script will be mirrored.
      * A deadzone radius value can be assigned to prevent area near the center reflecting endlessly and spinning around.
      */
+    [AddComponentMenu("Cavern/Tracking/Interactions/Orbit Interaction")]
     public class OrbitCavernInteraction : CavernInteraction
     {
         public enum OrbitMode

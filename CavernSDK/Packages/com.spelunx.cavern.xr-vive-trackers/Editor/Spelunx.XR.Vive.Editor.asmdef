@@ -7,6 +7,7 @@
         "Spelunx.Cavern.SDK.Editor",
         "Spelunx.Cavern.SDK",
         "Unity.XR.Management.Editor",
+        "Unity.XR.Management",
         "Spelunx.XR.Vive"
     ],
     "includePlatforms": [

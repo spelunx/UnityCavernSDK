@@ -3,6 +3,11 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.OpenXR;
+using UnityEditor.XR.Management;
+using UnityEngine.XR.Management;
+using UnityEditor.XR.Management.Metadata;
+using UnityEngine.XR.OpenXR.Features.Interactions;
 
 namespace Spelunx.XR.Vive
 {
@@ -108,7 +113,7 @@ namespace Spelunx.XR.Vive
             ConfigureTrackingOrigin();
 
             // load from path
-            indexControllerPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.xr-vive-trackers/Prefabs/ViveController.prefab", typeof(GameObject));
+            indexControllerPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.xr-vive-trackers/Prefabs/IndexController.prefab", typeof(GameObject));
 
             // instantiate a new index controller and set its origin to the tracking space origin
             GameObject indexControllerInstance = (GameObject)PrefabUtility.InstantiatePrefab(indexControllerPrefab as GameObject);
@@ -125,6 +130,7 @@ namespace Spelunx.XR.Vive
             // adds tracking space origin if not present in scene
             if (trackingOrigin == null)
             {
+                EnableOpenXR();
                 trackingOriginPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.xr-vive-trackers/Prefabs/Tracking Space Origin.prefab", typeof(GameObject));
                 // set tracking space origin to be in the CAVERN setup folder in the scene hierarchy
                 CavernSetup cavernSetup = FindAnyObjectByType<CavernSetup>();
@@ -139,6 +145,52 @@ namespace Spelunx.XR.Vive
                     trackingOriginInstance = (GameObject)PrefabUtility.InstantiatePrefab(trackingOriginPrefab as GameObject);
                 }
             }
+        }
+
+        private void EnableOpenXR()
+        {
+            BuildTargetGroup buildTargetGroup = BuildTargetGroup.Standalone;
+
+            if (!EditorBuildSettings.TryGetConfigObject(XRGeneralSettings.k_SettingsKey, out XRGeneralSettingsPerBuildTarget buildTargetSettings))
+            {
+                Debug.LogError("[Spelunx XR Vive]: XR General Settings config object not found. Ensure XR Plug-in Management is installed.");
+                return;
+            }
+
+            // Get the specific settings instance for the targeted platform
+
+            XRGeneralSettings settings = buildTargetSettings.SettingsForBuildTarget(buildTargetGroup);
+            if (settings == null)
+            {
+                Debug.LogError($"[Spelunx XR Vive]: Could not retrieve XR General Settings for {buildTargetGroup}.");
+                return;
+            }
+
+
+            // Assign the OpenXR loader to the XR Manager
+            string openXRLoaderType = "Unity.XR.OpenXR.OpenXRLoader";
+            bool success = XRPackageMetadataStore.AssignLoader(settings.Manager, openXRLoaderType, buildTargetGroup);
+
+            if (!success)
+            {
+                Debug.LogError($"[Spelunx XR Vive]: Failed to assign OpenXR loader. Please make sure the OpenXR package is installed and enable it manually in the XR Plugin Management Settings.");
+                return;
+            }
+
+            OpenXRSettings openXRSettings = OpenXRSettings.GetSettingsForBuildTargetGroup(buildTargetGroup);
+            if(openXRSettings == null)
+            {
+                Debug.LogError("[Spelunx XR Vive]: Failed to retrieve OpenXR settings.");
+                return;
+            }
+            openXRSettings.GetFeature<ValveIndexControllerProfile>().enabled = true;
+            openXRSettings.GetFeature<HTCViveTrackerProfile>().enabled = true;
+
+            // Mark the settings asset dirty so Unity saves the changes
+            EditorUtility.SetDirty(settings.Manager);
+            EditorUtility.SetDirty(buildTargetSettings);
+            EditorUtility.SetDirty(openXRSettings);
+            AssetDatabase.SaveAssets();
         }
 
         // adds a building block script to the selected object

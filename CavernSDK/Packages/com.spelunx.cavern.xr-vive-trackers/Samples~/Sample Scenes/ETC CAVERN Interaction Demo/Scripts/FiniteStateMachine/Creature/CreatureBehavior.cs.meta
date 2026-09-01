@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 1589f5a438c24e54590b358d940c2d12
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - player: {instanceID: 0}
+  - cavernSetup: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - creatureAudioSource: {instanceID: 0}
+  - bigCreatureAudioSource: {instanceID: 0}
+  - creatureWhine: {instanceID: 0}
+  - creatureHug: {fileID: 8300000, guid: 492faa870e1f7ac44aeb2649f5b3e371, type: 3}
+  - correctSound: {fileID: 8300000, guid: c4b9030964182494e92ca992797321d3, type: 3}
+  - creatureItself: {instanceID: 0}
+  - creatureAnimator: {instanceID: 0}
+  - bigCreaAnim: {instanceID: 0}
+  - hugEffect: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

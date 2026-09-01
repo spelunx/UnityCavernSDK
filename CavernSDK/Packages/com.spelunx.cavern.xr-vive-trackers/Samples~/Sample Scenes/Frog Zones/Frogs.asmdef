@@ -1,0 +1,18 @@
+{
+    "name": "Spelunx.XR.Vive.Samples.Frogs",
+    "rootNamespace": "Spelunx.XR.Vive.Samples",
+    "references": [
+        "GUID:851bf673ddc149a4c804cd0074225957",
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:5cf6644817ffaac4e91194cca1efea53"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

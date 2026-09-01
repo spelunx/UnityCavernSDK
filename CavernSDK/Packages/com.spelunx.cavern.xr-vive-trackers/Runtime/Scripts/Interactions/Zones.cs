@@ -6,6 +6,7 @@ using UnityEngine;
 
 namespace Spelunx.XR.Vive
 {
+    [AddComponentMenu("Cavern/Tracking/Interactions/Zones")]
     public class Zones : MonoBehaviour
     {
         [Tooltip("The number of zones within the CAVERN angle. There is one extra zone where there is no screen.")]

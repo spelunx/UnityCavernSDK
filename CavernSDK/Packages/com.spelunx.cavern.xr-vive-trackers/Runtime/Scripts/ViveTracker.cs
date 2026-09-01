@@ -6,7 +6,7 @@ namespace Spelunx.XR.Vive
 {
     // Some of this code is taken from the UnityEngine.InputSystem.XR.TrackedPoseDriver script
 
-    [AddComponentMenu("Cavern/Tracking/ViveTracker")]
+    [AddComponentMenu("Cavern/Tracking/Devices/Vive Tracker")]
     [DisallowMultipleComponent]
     public class ViveTracker : OpenXRTrackedDevice
     {
@@ -55,38 +55,78 @@ namespace Spelunx.XR.Vive
             Keyboard,
         }
 
+        /// <summary>
+        /// The role this tracker is bound to
+        /// </summary>
         [Header("Tracker Role")]
         [Tooltip("Specify an OpenXR binding for this tracker. Assign a tracker to this same binding in SteamVR.")]
         public TrackerRole binding = TrackerRole.None;
 
         private InputAction _poseAction;
+        /// <summary>
+        /// An InputAction for getting the tracker pose (position and rotation)
+        /// </summary>
         public InputAction PoseAction => _poseAction;
         private InputAction _positionAction;
+        /// <summary>
+        /// An InputAction for getting the position of this tracker
+        /// </summary>
         public InputAction PositionAction => _positionAction;
         private InputAction _rotationAction;
+        /// <summary>
+        /// An InputAction for getting the rotation of this tracker
+        /// </summary>
         public InputAction RotationAction => _rotationAction;
         private InputAction _triggerPress;
+        /// <summary>
+        /// An InputAction when the Trigger button is pressed
+        /// </summary>
         public InputAction TriggerPress => _triggerPress;
         private InputAction _squeezePress;
+        /// <summary>
+        /// An InputAction when the Squeeze button is pressed
+        /// </summary>
         public InputAction SqueezePress => _squeezePress;
         private InputAction _menuPress;
+        /// <summary>
+        /// An InputAction when the Menu button is pressed
+        /// </summary>
         public InputAction MenuPress => _menuPress;
         private InputAction _systemPress;
+        /// <summary>
+        /// An InputAction when the System button is pressed
+        /// </summary>
         public InputAction SystemPress => _systemPress;
         private InputAction _trackpadPress;
+        /// <summary>
+        /// An InputAction when the Trackpad button is pressed
+        /// </summary>
         public InputAction TrackpadPress => _trackpadPress;
         private InputAction _isTrackedAction;
+        /// <summary>
+        /// An InputAction for getting when the tracker is tracked or loses tracking
+        /// </summary>
         public InputAction IsTracked => _isTrackedAction;
         private InputAction _trackingStateAction;
-        // test
+        /// <summary>
+        /// An InputAction for getting the current tracking state of the tracker
+        /// </summary>
+        public InputAction TrackingState => _trackingStateAction;
         private InputAction _powerPress;
+        /// <summary>
+        /// An InputAction when the Power button is pressed. This might not work, or might be the same as "Menu"
+        /// </summary>
         public InputAction PowerPress => _powerPress;
         private InputAction _thumbPress;
+        /// <summary>
+        /// An InputAction when the Thumb button is pressed. Due to steamvr weirdness, this might need to be configured in steamvr before it works here.
+        /// </summary>
         public InputAction ThumbPress => _thumbPress;
         private InputAction _haptics;
-        // end test
-        public InputAction TrackingState => _trackingStateAction;
 
+        /// <summary>
+        /// Is the tracker currently being detected and tracked? This uses the IsTracked action under the hood.
+        /// </summary>
         public bool IsCurrentlyTracking => (_isTrackedAction?.ReadValue<float>() ?? 0) >= 0.5f;
 
         void Awake()
@@ -172,6 +212,11 @@ namespace Spelunx.XR.Vive
 
     public static class TrackerRoleExtensions
     {
+        /// <summary>
+        /// Get displayable name for this tracker role
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
         public static string GetReadableName(this ViveTracker.TrackerRole role)
         {
             return role switch
@@ -198,6 +243,12 @@ namespace Spelunx.XR.Vive
                 _ => "(undefined)",
             };
         }
+
+        /// <summary>
+        /// Get the string rolepath for use in openxr input action paths
+        /// </summary>
+        /// <param name="role"></param>
+        /// <returns></returns>
         public static string GetRolePath(this ViveTracker.TrackerRole role)
         {
             return role switch

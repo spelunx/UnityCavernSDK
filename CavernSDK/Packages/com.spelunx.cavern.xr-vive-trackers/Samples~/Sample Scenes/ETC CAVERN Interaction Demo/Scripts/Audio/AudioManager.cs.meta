@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 7a1733c3529b57546a9e0ffe9aa91d80
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - creatureAudioSource: {instanceID: 0}
+  - bigCreatureAudioSource: {instanceID: 0}
+  - uIAudioSource: {instanceID: 0}
+  - creatureFlyingSound: {fileID: 6418180475301049370, guid: 97626225371618e46b233d3a6a3f4187, type: 2}
+  - creatureWhiningSound: {fileID: 6418180475301049370, guid: 571ad7719abf8f249af305f01996e7bd, type: 2}
+  - creaturePickUpSound: {fileID: 8300000, guid: 42c39b2f3f697364a922aad855a8a0c1, type: 3}
+  - creatureHuggingSound: {fileID: 8300000, guid: 58188a1439af93044b5bc6de379456a5, type: 3}
+  - bigCreatureHuggingSound: {fileID: 8300000, guid: e3fb9b993999d5a43900110b6f2014c9, type: 3}
+  - correctSound: {fileID: 8300000, guid: 9c2ff565760dc8d468713381f9c81281, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

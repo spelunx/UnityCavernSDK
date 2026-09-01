@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Spelunx.XR.Vive
 {
-    [AddComponentMenu("Cavern/Tracking/IndexController")]
+    [AddComponentMenu("Cavern/Tracking/Devices/Index Controller")]
     [DisallowMultipleComponent]
     public class IndexController : OpenXRTrackedDevice
     {

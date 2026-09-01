@@ -8,6 +8,7 @@ namespace Spelunx.XR.Vive
     /// This also adds the ability to calibrate the rotation of all active Vive Trackers.
     /// </summary>
     [DisallowMultipleComponent]
+    [AddComponentMenu("Cavern/Features/Vive Debug Keys Feature")]
     public class ViveDebugKeysFeature : MonoBehaviour, ICavernDebugKeysFeature
     {
         [Header("Input Actions")]

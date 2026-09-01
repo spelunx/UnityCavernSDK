@@ -2,6 +2,7 @@ using UnityEngine;
 
 namespace Spelunx.XR.Vive
 {
+    [AddComponentMenu("Cavern/Tracking/Interactions/Evade Interaction")]
     public class EvadeInteraction : Interaction
     {
         [SerializeField] private float triggerDistance = 2.0f; // Distance at which it moves away

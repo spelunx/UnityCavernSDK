@@ -16,5 +16,22 @@
     "url": "https://github.com/spelunx/UnityCavernSDK/tree/main/CavernSDK/Packages/com.spelunx.cavern.xr-vive-trackers",
     "email": "joshuagraykaplan@gmail.com"
   },
+  "samples": [
+    {
+      "displayName": "Vive Tracker Sample Scenes",
+      "description": "Sample scenes that show the functionality of the Vive Trackers.",
+      "path": "Samples~/Sample Scenes"
+    },
+    {
+      "displayName": "Vive Tracker Starter Scenes",
+      "description": "Scenes to help you get started. You can copy these scenes to build off of them.",
+      "path": "Samples~/Starter Scenes"
+    },
+    {
+      "displayName": "Vive Tracker Tester Scenes",
+      "description": "Scenes to help you test the functionality of the Vive Trackers.",
+      "path": "Samples~/Tester Scenes"
+    }
+  ],
   "documentationUrl": "https://github.com/spelunx/UnityCavernSDK/tree/main/CavernSDK/Packages/com.spelunx.cavern.xr-vive-trackers"
 }
