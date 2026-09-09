@@ -114,20 +114,22 @@ $(document).ready(function(){initNavTree('db/d8f/AutoActivateFullscreenPreview_8
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keywordtype">void</span> OnPlayModeStateChanged(PlayModeStateChange state)</div>
 <div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        {</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            <span class="keywordflow">if</span> (EditorPrefs.GetBool(<a class="code hl_variable" href="../../d3/d7f/classSpelunx_1_1Fullscreen_1_1AutoActivateFullscreenPreview.html#a926d8be239e6bfefdf462cb5cc3fc152">IsFullscreenPreviewEnabledKey</a>, <span class="keyword">false</span>))</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            {</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>                <span class="keywordflow">if</span> (state == PlayModeStateChange.EnteredPlayMode)</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>                {</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>                    FullscreenGameView.SetFullscreen(<span class="keyword">true</span>);</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                }</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                <span class="keywordflow">if</span> (state == PlayModeStateChange.ExitingPlayMode)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>                {</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                    FullscreenGameView.SetFullscreen(<span class="keyword">false</span>);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                }</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            }</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        }</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    }</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>            <span class="keywordtype">int</span> whichDisplay = EditorPrefs.GetInt(<a class="code hl_variable" href="../../d3/d7f/classSpelunx_1_1Fullscreen_1_1AutoActivateFullscreenPreview.html#a926d8be239e6bfefdf462cb5cc3fc152">IsFullscreenPreviewEnabledKey</a>, -1);</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <span class="comment">// if (EditorPrefs.GetBool(IsFullscreenPreviewEnabledKey, false))</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            <span class="keywordflow">if</span> (whichDisplay != -1)</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>                <span class="keywordflow">if</span> (state == PlayModeStateChange.EnteredPlayMode)</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>                {</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>                    FullscreenGameView.SetFullscreen(<span class="keyword">true</span>, whichDisplay);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>                }</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>                <span class="keywordflow">if</span> (state == PlayModeStateChange.ExitingPlayMode)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>                {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>                    FullscreenGameView.SetFullscreen(<span class="keyword">false</span>);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>                }</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            }</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>        }</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    }</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
 <div class="ttc" id="aclassSpelunx_1_1Fullscreen_1_1AutoActivateFullscreenPreview_html"><div class="ttname"><a href="../../d3/d7f/classSpelunx_1_1Fullscreen_1_1AutoActivateFullscreenPreview.html">Spelunx.Fullscreen.AutoActivateFullscreenPreview</a></div><div class="ttdef"><b>Definition:</b> <a href="../../db/d8f/AutoActivateFullscreenPreview_8cs_source.html#l00006">AutoActivateFullscreenPreview.cs:7</a></div></div>
 <div class="ttc" id="aclassSpelunx_1_1Fullscreen_1_1AutoActivateFullscreenPreview_html_a926d8be239e6bfefdf462cb5cc3fc152"><div class="ttname"><a href="../../d3/d7f/classSpelunx_1_1Fullscreen_1_1AutoActivateFullscreenPreview.html#a926d8be239e6bfefdf462cb5cc3fc152">Spelunx.Fullscreen.AutoActivateFullscreenPreview.IsFullscreenPreviewEnabledKey</a></div><div class="ttdeci">const string IsFullscreenPreviewEnabledKey</div><div class="ttdef"><b>Definition:</b> <a href="../../db/d8f/AutoActivateFullscreenPreview_8cs_source.html#l00008">AutoActivateFullscreenPreview.cs:8</a></div></div>
 <div class="ttc" id="anamespaceSpelunx_1_1Fullscreen_html"><div class="ttname"><a href="../../d9/de8/namespaceSpelunx_1_1Fullscreen.html">Spelunx.Fullscreen</a></div><div class="ttdef"><b>Definition:</b> <a href="../../db/d8f/AutoActivateFullscreenPreview_8cs_source.html#l00003">AutoActivateFullscreenPreview.cs:4</a></div></div>

@@ -1,4 +1,4 @@
 var SoundController_8cs =
 [
-    [ "SoundController", "d0/d36/classSoundController.html", "d0/d36/classSoundController" ]
+    [ "Spelunx.Samples.SoundTester.SoundController", "dd/db7/classSpelunx_1_1Samples_1_1SoundTester_1_1SoundController.html", "dd/db7/classSpelunx_1_1Samples_1_1SoundTester_1_1SoundController" ]
 ];

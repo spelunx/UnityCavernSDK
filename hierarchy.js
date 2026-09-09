@@ -1,7 +1,12 @@
 var hierarchy =
 [
+    [ "Attribute", null, [
+      [ "Spelunx.DisallowMultipleCavernFeature", "db/d84/classSpelunx_1_1DisallowMultipleCavernFeature.html", null ]
+    ] ],
     [ "Spelunx.Fullscreen.AutoActivateFullscreenPreview", "d3/d7f/classSpelunx_1_1Fullscreen_1_1AutoActivateFullscreenPreview.html", null ],
+    [ "Spelunx.CavernFeatureSet", "d5/d26/classSpelunx_1_1CavernFeatureSet.html", null ],
     [ "Editor", null, [
+      [ "Spelunx.CavernFeatureEditor", "dc/d6b/classSpelunx_1_1CavernFeatureEditor.html", null ],
       [ "Spelunx.Fullscreen.ToggleFullscreenGameView", "dc/d95/classSpelunx_1_1Fullscreen_1_1ToggleFullscreenGameView.html", null ],
       [ "Spelunx.Orbbec.BodyTrackerInspector", "df/d42/classSpelunx_1_1Orbbec_1_1BodyTrackerInspector.html", null ],
       [ "Spelunx.Orbbec.BodyTrackerManagerInspector", "de/de3/classSpelunx_1_1Orbbec_1_1BodyTrackerManagerInspector.html", null ]
@@ -12,10 +17,18 @@ var hierarchy =
       [ "Spelunx.ViveToolsPanel", "d7/d07/classSpelunx_1_1ViveToolsPanel.html", null ]
     ] ],
     [ "GerstnerWaveDisplacement", "dc/d5c/classGerstnerWaveDisplacement.html", null ],
-    [ "Spelunx.IDebugKeys", "d1/df7/interfaceSpelunx_1_1IDebugKeys.html", [
-      [ "SampleDebugKeys", "d3/daf/classSampleDebugKeys.html", null ],
-      [ "Spelunx.CavernDebugKeys", "d3/d24/classSpelunx_1_1CavernDebugKeys.html", null ],
+    [ "Spelunx.ICavernDebugKeysFeature", "dd/d01/interfaceSpelunx_1_1ICavernDebugKeysFeature.html", [
+      [ "Spelunx.CavernDebugKeysFeature", "dc/d05/classSpelunx_1_1CavernDebugKeysFeature.html", null ],
       [ "Spelunx.Vive.ViveDebugKeys", "de/d71/classSpelunx_1_1Vive_1_1ViveDebugKeys.html", null ]
+    ] ],
+    [ "Spelunx.ICavernRenderFeature", "d9/d5a/interfaceSpelunx_1_1ICavernRenderFeature.html", [
+      [ "Spelunx.CavernBaseRenderFeature", "d9/d02/classSpelunx_1_1CavernBaseRenderFeature.html", null ],
+      [ "Spelunx.CavernPreviewFeature", "d3/d3f/classSpelunx_1_1CavernPreviewFeature.html", null ],
+      [ "Spelunx.CavernScreenSpaceUIFeature", "d5/d1f/classSpelunx_1_1CavernScreenSpaceUIFeature.html", null ],
+      [ "Spelunx.CavernWarpingFeature", "dc/d81/classSpelunx_1_1CavernWarpingFeature.html", null ]
+    ] ],
+    [ "IDebugKeys", null, [
+      [ "SampleDebugKeys", "d3/daf/classSampleDebugKeys.html", null ]
     ] ],
     [ "IDisposable", null, [
       [ "Spelunx.Orbbec.FrameDataProvider", "d6/dad/classSpelunx_1_1Orbbec_1_1FrameDataProvider.html", null ]
@@ -36,13 +49,23 @@ var hierarchy =
       [ "FiniteStateMachine", "d7/d63/classFiniteStateMachine.html", null ],
       [ "GameManager", "d2/d2c/classGameManager.html", null ],
       [ "SampleDebugKeys", "d3/daf/classSampleDebugKeys.html", null ],
-      [ "SoundController", "d0/d36/classSoundController.html", null ],
-      [ "Spelunx.CavernDebugKeys", "d3/d24/classSpelunx_1_1CavernDebugKeys.html", null ],
-      [ "Spelunx.CavernRenderer", "db/d6f/classSpelunx_1_1CavernRenderer.html", null ],
+      [ "Spelunx.CavernFeature", "da/da6/classSpelunx_1_1CavernFeature.html", [
+        [ "Spelunx.CavernBaseRenderFeature", "d9/d02/classSpelunx_1_1CavernBaseRenderFeature.html", null ],
+        [ "Spelunx.CavernDebugKeysFeature", "dc/d05/classSpelunx_1_1CavernDebugKeysFeature.html", null ],
+        [ "Spelunx.CavernPreviewFeature", "d3/d3f/classSpelunx_1_1CavernPreviewFeature.html", null ],
+        [ "Spelunx.CavernRenderer", "db/d6f/classSpelunx_1_1CavernRenderer.html", null ],
+        [ "Spelunx.CavernRoundWorldSpaceUIFeature", "d2/d46/classSpelunx_1_1CavernRoundWorldSpaceUIFeature.html", null ],
+        [ "Spelunx.CavernScreenSpaceUIFeature", "d5/d1f/classSpelunx_1_1CavernScreenSpaceUIFeature.html", null ],
+        [ "Spelunx.CavernWarpingFeature", "dc/d81/classSpelunx_1_1CavernWarpingFeature.html", null ]
+      ] ],
+      [ "Spelunx.CavernSetup", "d8/d44/classSpelunx_1_1CavernSetup.html", null ],
+      [ "Spelunx.DisplayActivator", "d0/d67/classSpelunx_1_1DisplayActivator.html", null ],
       [ "Spelunx.Orbbec.BodyTracker", "d2/d27/classSpelunx_1_1Orbbec_1_1BodyTracker.html", null ],
       [ "Spelunx.Orbbec.BodyTrackerAvatar", "dc/d9e/classSpelunx_1_1Orbbec_1_1BodyTrackerAvatar.html", null ],
       [ "Spelunx.Orbbec.BodyTrackerManager", "da/dca/classSpelunx_1_1Orbbec_1_1BodyTrackerManager.html", null ],
+      [ "Spelunx.Samples.SoundTester.SoundController", "dd/db7/classSpelunx_1_1Samples_1_1SoundTester_1_1SoundController.html", null ],
       [ "Spelunx.ScreenSpaceCanvasRenderer", "d7/dba/classSpelunx_1_1ScreenSpaceCanvasRenderer.html", null ],
+      [ "Spelunx.TestFeatureSet", "db/d2d/classSpelunx_1_1TestFeatureSet.html", null ],
       [ "Spelunx.Vive.FollowMotion", "d7/da5/classSpelunx_1_1Vive_1_1FollowMotion.html", null ],
       [ "Spelunx.Vive.Interaction", "df/dd7/classSpelunx_1_1Vive_1_1Interaction.html", [
         [ "Spelunx.Vive.CavernInteraction", "d3/d86/classSpelunx_1_1Vive_1_1CavernInteraction.html", [
@@ -69,6 +92,9 @@ var hierarchy =
     ] ],
     [ "Spelunx.Vive.OVRT_Events", "d8/d96/classSpelunx_1_1Vive_1_1OVRT__Events.html", null ],
     [ "Spelunx.Vive.OVRT_Utils", "d7/d48/classSpelunx_1_1Vive_1_1OVRT__Utils.html", null ],
+    [ "PropertyDrawer", null, [
+      [ "Spelunx.CavernFeatureSetEditor", "da/d12/classSpelunx_1_1CavernFeatureSetEditor.html", null ]
+    ] ],
     [ "Spelunx.Vive.OVRT_RenderModel.RenderModel", "d9/dd1/classSpelunx_1_1Vive_1_1OVRT__RenderModel_1_1RenderModel.html", null ],
     [ "Spelunx.Vive.OVRT_Utils.RigidTransform", "d9/d98/structSpelunx_1_1Vive_1_1OVRT__Utils_1_1RigidTransform.html", null ],
     [ "ScriptableObject", null, [
@@ -81,6 +107,8 @@ var hierarchy =
     ] ],
     [ "ScriptableRenderPass", null, [
       [ "Spelunx.CavernRenderPass", "d3/d01/classSpelunx_1_1CavernRenderPass.html", null ],
+      [ "Spelunx.CavernScreenSpaceUIRenderPass", "db/d94/classSpelunx_1_1CavernScreenSpaceUIRenderPass.html", null ],
+      [ "Spelunx.CavernWarpPass", "d6/d0d/classSpelunx_1_1CavernWarpPass.html", null ],
       [ "Spelunx.DirectCanvasRenderPass", "da/da0/classSpelunx_1_1DirectCanvasRenderPass.html", null ]
     ] ],
     [ "AudioManager.SpatialBlend", "df/dc7/classAudioManager_1_1SpatialBlend.html", null ],

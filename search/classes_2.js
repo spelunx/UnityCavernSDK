@@ -1,10 +1,22 @@
 var searchData=
 [
-  ['caverndebugkeys_0',['CavernDebugKeys',['../d3/d24/classSpelunx_1_1CavernDebugKeys.html',1,'Spelunx']]],
-  ['caverninteraction_1',['CavernInteraction',['../d3/d86/classSpelunx_1_1Vive_1_1CavernInteraction.html',1,'Spelunx::Vive']]],
-  ['cavernrenderer_2',['CavernRenderer',['../db/d6f/classSpelunx_1_1CavernRenderer.html',1,'Spelunx']]],
-  ['cavernrenderpass_3',['CavernRenderPass',['../d3/d01/classSpelunx_1_1CavernRenderPass.html',1,'Spelunx']]],
-  ['caverntoolspanel_4',['CavernToolsPanel',['../d4/d7a/classSpelunx_1_1CavernToolsPanel.html',1,'Spelunx']]],
-  ['circularmovement_5',['CircularMovement',['../dc/d26/classCircularMovement.html',1,'']]],
-  ['creaturebehavior_6',['CreatureBehavior',['../d4/d5c/classCreatureBehavior.html',1,'']]]
+  ['cavernbaserenderfeature_0',['CavernBaseRenderFeature',['../d9/d02/classSpelunx_1_1CavernBaseRenderFeature.html',1,'Spelunx']]],
+  ['caverndebugkeysfeature_1',['CavernDebugKeysFeature',['../dc/d05/classSpelunx_1_1CavernDebugKeysFeature.html',1,'Spelunx']]],
+  ['cavernfeature_2',['CavernFeature',['../da/da6/classSpelunx_1_1CavernFeature.html',1,'Spelunx']]],
+  ['cavernfeatureeditor_3',['CavernFeatureEditor',['../dc/d6b/classSpelunx_1_1CavernFeatureEditor.html',1,'Spelunx']]],
+  ['cavernfeatureset_4',['CavernFeatureSet',['../d5/d26/classSpelunx_1_1CavernFeatureSet.html',1,'Spelunx']]],
+  ['cavernfeatureseteditor_5',['CavernFeatureSetEditor',['../da/d12/classSpelunx_1_1CavernFeatureSetEditor.html',1,'Spelunx']]],
+  ['caverninteraction_6',['CavernInteraction',['../d3/d86/classSpelunx_1_1Vive_1_1CavernInteraction.html',1,'Spelunx::Vive']]],
+  ['cavernpreviewfeature_7',['CavernPreviewFeature',['../d3/d3f/classSpelunx_1_1CavernPreviewFeature.html',1,'Spelunx']]],
+  ['cavernrenderer_8',['CavernRenderer',['../db/d6f/classSpelunx_1_1CavernRenderer.html',1,'Spelunx']]],
+  ['cavernrenderpass_9',['CavernRenderPass',['../d3/d01/classSpelunx_1_1CavernRenderPass.html',1,'Spelunx']]],
+  ['cavernroundworldspaceuifeature_10',['CavernRoundWorldSpaceUIFeature',['../d2/d46/classSpelunx_1_1CavernRoundWorldSpaceUIFeature.html',1,'Spelunx']]],
+  ['cavernscreenspaceuifeature_11',['CavernScreenSpaceUIFeature',['../d5/d1f/classSpelunx_1_1CavernScreenSpaceUIFeature.html',1,'Spelunx']]],
+  ['cavernscreenspaceuirenderpass_12',['CavernScreenSpaceUIRenderPass',['../db/d94/classSpelunx_1_1CavernScreenSpaceUIRenderPass.html',1,'Spelunx']]],
+  ['cavernsetup_13',['CavernSetup',['../d8/d44/classSpelunx_1_1CavernSetup.html',1,'Spelunx']]],
+  ['caverntoolspanel_14',['CavernToolsPanel',['../d4/d7a/classSpelunx_1_1CavernToolsPanel.html',1,'Spelunx']]],
+  ['cavernwarpingfeature_15',['CavernWarpingFeature',['../dc/d81/classSpelunx_1_1CavernWarpingFeature.html',1,'Spelunx']]],
+  ['cavernwarppass_16',['CavernWarpPass',['../d6/d0d/classSpelunx_1_1CavernWarpPass.html',1,'Spelunx']]],
+  ['circularmovement_17',['CircularMovement',['../dc/d26/classCircularMovement.html',1,'']]],
+  ['creaturebehavior_18',['CreatureBehavior',['../d4/d5c/classCreatureBehavior.html',1,'']]]
 ];

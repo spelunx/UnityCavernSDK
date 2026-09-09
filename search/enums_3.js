@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['previeweye_0',['PreviewEye',['../db/d6f/classSpelunx_1_1CavernRenderer.html#a65352713d5d939de15753f5241cae657',1,'Spelunx::CavernRenderer']]]
+  ['eindex_0',['EIndex',['../db/d50/classSpelunx_1_1Vive_1_1OVRT__TrackedObject.html#a0fc4dcf85be9ce65a41e0c766a4ff204',1,'Spelunx::Vive::OVRT_TrackedObject']]]
 ];

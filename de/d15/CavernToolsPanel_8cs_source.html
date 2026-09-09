@@ -103,103 +103,178 @@ $(document).ready(function(){initNavTree('de/d15/CavernToolsPanel_8cs_source.htm
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keyword">using </span>UnityEngine.UIElements;</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="keyword">using </span>UnityEditor.SceneManagement;</div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keyword">using </span>UnityEngine.SceneManagement;</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d1/d34/namespaceSpelunx.html">Spelunx</a></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html">    9</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html">CavernToolsPanel</a> : EditorWindow</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        [SerializeField]</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        <span class="keyword">private</span> VisualTreeAsset m_VisualTreeAsset = <span class="keywordflow">default</span>;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        <span class="comment">// places tools under CAVERN toolbar with hierarchy ordering</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        [MenuItem(<span class="stringliteral">&quot;CAVERN/CAVERN Tools&quot;</span>, <span class="keyword">false</span>, 100)]</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a6a9e8495a1072edf738b48af5a65c40c">   16</a></span>        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a6a9e8495a1072edf738b48af5a65c40c">ShowWindow</a>()</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>        {</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>            <a class="code hl_class" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html">CavernToolsPanel</a> wnd = GetWindow&lt;CavernToolsPanel&gt;();</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            wnd.titleContent = <span class="keyword">new</span> GUIContent(<span class="stringliteral">&quot;CAVERN Tools&quot;</span>);</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        }</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a213b29893b0b468a624bf56c0185cf28">   22</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a213b29893b0b468a624bf56c0185cf28">CreateGUI</a>()</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>        {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>            <span class="comment">// root VisualElement object of editor window</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            VisualElement root = rootVisualElement;</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>            <span class="comment">// Instantiate UXML, UI setup in UXML document</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            VisualElement panelSetup = m_VisualTreeAsset.Instantiate();</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            root.Add(panelSetup);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>            VisualElement roundUI = root.Q(<span class="stringliteral">&quot;RoundUISetup&quot;</span>);</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            <span class="comment">// Add button functionality for CAVERN setup and round UI setup</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            Button cavernSetupButton = root.Q&lt;Button&gt;(<span class="stringliteral">&quot;CavernSetupButton&quot;</span>);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            cavernSetupButton.RegisterCallback&lt;ClickEvent, VisualElement&gt;(CavernSetup, roundUI);</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">using </span>UnityEngine.Rendering.Universal;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="../../d1/d34/namespaceSpelunx.html">Spelunx</a></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html">   10</a></span>    <span class="keyword">public</span> <span class="keyword">class </span><a class="code hl_class" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html">CavernToolsPanel</a> : EditorWindow</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>        [SerializeField]</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <span class="keyword">private</span> VisualTreeAsset m_VisualTreeAsset = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>        <span class="comment">// places tools under CAVERN toolbar with hierarchy ordering</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>        [MenuItem(<span class="stringliteral">&quot;CAVERN/CAVERN Tools&quot;</span>, <span class="keyword">false</span>, 100)]</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a6a9e8495a1072edf738b48af5a65c40c">   17</a></span>        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a6a9e8495a1072edf738b48af5a65c40c">ShowWindow</a>()</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>        {</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>            <a class="code hl_class" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html">CavernToolsPanel</a> wnd = GetWindow&lt;CavernToolsPanel&gt;();</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>            wnd.titleContent = <span class="keyword">new</span> GUIContent(<span class="stringliteral">&quot;CAVERN Tools&quot;</span>);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>        }</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a213b29893b0b468a624bf56c0185cf28">   23</a></span>        <span class="keyword">public</span> <span class="keywordtype">void</span> <a class="code hl_function" href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a213b29893b0b468a624bf56c0185cf28">CreateGUI</a>()</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>        {</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>            <span class="comment">// root VisualElement object of editor window</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>            VisualElement root = rootVisualElement;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>            <span class="comment">// Instantiate UXML, UI setup in UXML document</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>            VisualElement panelSetup = m_VisualTreeAsset.Instantiate();</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>            root.Add(panelSetup);</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            VisualElement roundUI = root.Q(<span class="stringliteral">&quot;RoundUISetup&quot;</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>            VisualElement screenSpaceUI = root.Q(<span class="stringliteral">&quot;ScreenSpaceUISetup&quot;</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>            <a class="code hl_class" href="../../db/d6f/classSpelunx_1_1CavernRenderer.html">CavernRenderer</a> cavernRenderer = FindAnyObjectByType&lt;CavernRenderer&gt;();</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            Button roundUISetupButton = root.Q&lt;Button&gt;(<span class="stringliteral">&quot;RoundUISetupButton&quot;</span>);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            <a class="code hl_class" href="../../db/d6f/classSpelunx_1_1CavernRenderer.html">CavernRenderer</a> cavernRenderer = FindFirstObjectByType&lt;CavernRenderer&gt;();</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <span class="comment">// Hides roundUI setup if no CAVERN setup present in scene since it depends on the setup</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keywordflow">if</span> (cavernRenderer == <span class="keyword">null</span>)</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>            {</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>                roundUI.style.visibility = Visibility.Hidden;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            }</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            roundUISetupButton.RegisterCallback&lt;ClickEvent&gt;(RoundUISetup);</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        }</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> CavernSetup(ClickEvent evt, VisualElement roundUI)</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        {</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <span class="comment">// load from path</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            GameObject cavernSetupPrefab = (GameObject)AssetDatabase.LoadAssetAtPath(<span class="stringliteral">&quot;Packages/com.spelunx.cavern.sdk/Prefabs/CavernSetup.prefab&quot;</span>, typeof(GameObject));</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            GameObject cavernSetupInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernSetupPrefab as GameObject);</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>            <span class="comment">// sets speaker mode to 7.1 surround</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            AudioConfiguration audioConfigs = AudioSettings.GetConfiguration();</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            audioConfigs.speakerMode = AudioSpeakerMode.Mode7point1;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            AudioSettings.Reset(audioConfigs);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            <span class="comment">// removes any default main cameras in scene (but preserves any cameras not tagged as MainCamera)</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            GameObject mainCamera = GameObject.FindGameObjectWithTag(<span class="stringliteral">&quot;MainCamera&quot;</span>);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>            <span class="keywordflow">if</span> (mainCamera != <span class="keyword">null</span>)</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>                Undo.DestroyObjectImmediate(GameObject.FindGameObjectWithTag(<span class="stringliteral">&quot;MainCamera&quot;</span>));</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            }</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>            <span class="comment">// mark scene as edited to prompt saving</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <span class="comment">// sets roundUI section of tools panel to be visible</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            roundUI.style.visibility = Visibility.Visible;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        }</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> RoundUISetup(ClickEvent evt)</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>        {</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            CavernRenderer cavernRenderer = FindFirstObjectByType&lt;CavernRenderer&gt;();</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            <span class="comment">// load from path</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            GameObject cavernUIPrefab = (GameObject)AssetDatabase.LoadAssetAtPath(<span class="stringliteral">&quot;Packages/com.spelunx.cavern.sdk/Prefabs/CavernUI.prefab&quot;</span>, typeof(GameObject));</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            GameObject cavernUIInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernUIPrefab as GameObject);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>            GameObject roundCavernMeshRendererPrefab = (GameObject)AssetDatabase.LoadAssetAtPath(<span class="stringliteral">&quot;Packages/com.spelunx.cavern.sdk/Prefabs/RoundCavernMeshRenderer.prefab&quot;</span>, typeof(GameObject));</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>            GameObject roundCavernMeshRendererInstance = (GameObject)PrefabUtility.InstantiatePrefab(roundCavernMeshRendererPrefab as GameObject);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            WorldSpaceMeshCanvas meshCanvas = roundCavernMeshRendererInstance.GetComponent&lt;WorldSpaceMeshCanvas&gt;();</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>            meshCanvas.setCavernRenderer(cavernRenderer);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            <span class="comment">// set default parameters of roundUI mesh</span></div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>            meshCanvas.transform.parent = cavernRenderer.transform;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            meshCanvas.transform.localPosition = Vector3.zero;</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            meshCanvas.transform.localRotation = Quaternion.identity;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>            <span class="comment">// mark scene as edited to prompt saving</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>        }</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    }</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
-<div class="ttc" id="aclassSpelunx_1_1CavernRenderer_html"><div class="ttname"><a href="../../db/d6f/classSpelunx_1_1CavernRenderer.html">Spelunx.CavernRenderer</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d7b/CavernRenderer_8cs_source.html#l00011">CavernRenderer.cs:12</a></div></div>
-<div class="ttc" id="aclassSpelunx_1_1CavernToolsPanel_html"><div class="ttname"><a href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html">Spelunx.CavernToolsPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d15/CavernToolsPanel_8cs_source.html#l00009">CavernToolsPanel.cs:10</a></div></div>
-<div class="ttc" id="aclassSpelunx_1_1CavernToolsPanel_html_a213b29893b0b468a624bf56c0185cf28"><div class="ttname"><a href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a213b29893b0b468a624bf56c0185cf28">Spelunx.CavernToolsPanel.CreateGUI</a></div><div class="ttdeci">void CreateGUI()</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d15/CavernToolsPanel_8cs_source.html#l00022">CavernToolsPanel.cs:22</a></div></div>
-<div class="ttc" id="aclassSpelunx_1_1CavernToolsPanel_html_a6a9e8495a1072edf738b48af5a65c40c"><div class="ttname"><a href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a6a9e8495a1072edf738b48af5a65c40c">Spelunx.CavernToolsPanel.ShowWindow</a></div><div class="ttdeci">static void ShowWindow()</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d15/CavernToolsPanel_8cs_source.html#l00016">CavernToolsPanel.cs:16</a></div></div>
-<div class="ttc" id="anamespaceSpelunx_html"><div class="ttname"><a href="../../d1/d34/namespaceSpelunx.html">Spelunx</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d9/d08/TagUtil_8cs_source.html#l00004">TagUtil.cs:4</a></div></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            <span class="comment">// Hides roundUI setup if no CAVERN setup present in scene since it depends on the setup</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="keywordflow">if</span> (cavernRenderer == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>            {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>                roundUI.style.visibility = Visibility.Hidden;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>                screenSpaceUI.style.visibility = Visibility.Hidden;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            }</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="comment">// Add button functionality for CAVERN setup</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>            Button cavernSetupButton = root.Q&lt;Button&gt;(<span class="stringliteral">&quot;CavernSetupButton&quot;</span>);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            cavernSetupButton.RegisterCallback&lt;ClickEvent, VisualElement&gt;(<a class="code hl_class" href="../../d8/d44/classSpelunx_1_1CavernSetup.html">CavernSetup</a>, roundUI);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="comment">// Add button functionality for Round UI setup</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>            Button roundUISetupButton = root.Q&lt;Button&gt;(<span class="stringliteral">&quot;RoundUISetupButton&quot;</span>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            roundUISetupButton.RegisterCallback&lt;ClickEvent&gt;(RoundUISetup);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>            <span class="comment">// Add button functionality for Screen Space UI setup</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            Button screenSpaceUISetupButton = root.Q&lt;Button&gt;(<span class="stringliteral">&quot;ScreenSpaceUISetupButton&quot;</span>);</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            screenSpaceUISetupButton.RegisterCallback&lt;ClickEvent&gt;(ScreenSpaceUISetup);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code hl_class" href="../../d8/d44/classSpelunx_1_1CavernSetup.html">CavernSetup</a>(ClickEvent evt, VisualElement roundUI)</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>            <span class="comment">// load from path</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            GameObject cavernSetupPrefab = (GameObject)AssetDatabase.LoadAssetAtPath(<span class="stringliteral">&quot;Packages/com.spelunx.cavern.sdk/Prefabs/Cavern Setup.prefab&quot;</span>, typeof(GameObject));</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            GameObject cavernSetupInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernSetupPrefab as GameObject);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            <span class="comment">// sets speaker mode to 7.1 surround</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            AudioConfiguration audioConfigs = AudioSettings.GetConfiguration();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>            audioConfigs.speakerMode = AudioSpeakerMode.Mode7point1;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>            AudioSettings.Reset(audioConfigs);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>            <span class="comment">// removes any default main cameras in scene (but preserves any cameras not tagged as MainCamera)</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>            GameObject mainCamera = GameObject.FindGameObjectWithTag(<span class="stringliteral">&quot;MainCamera&quot;</span>);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>            <span class="keywordflow">if</span> (mainCamera != <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>            {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>                Undo.DestroyObjectImmediate(GameObject.FindGameObjectWithTag(<span class="stringliteral">&quot;MainCamera&quot;</span>));</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>            }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            AddRendererToURPAsset();</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>            <span class="comment">// mark scene as edited to prompt saving</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <span class="comment">// sets roundUI section of tools panel to be visible</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            roundUI.style.visibility = Visibility.Visible;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> AddRendererToURPAsset()</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>            UniversalRenderPipelineAsset urpAsset = AssetDatabase.LoadAssetAtPath&lt;UniversalRenderPipelineAsset&gt;(<span class="stringliteral">&quot;Assets/Settings/PC_RPAsset.asset&quot;</span>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>            ScriptableRendererData newRenderer = AssetDatabase.LoadAssetAtPath&lt;ScriptableRendererData&gt;(<span class="stringliteral">&quot;Packages/com.spelunx.cavern.sdk/Runtime/Scripts/Camera/Cavern Renderer.asset&quot;</span>);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>            <span class="keywordflow">if</span> (urpAsset == <span class="keyword">null</span> || newRenderer == <span class="keyword">null</span>)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>            {</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>                Debug.LogError(<span class="stringliteral">&quot;Failed to add Cavern Renderer to URP asset. Please do this manually.&quot;</span>);</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>                <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>            }</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span> </div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>            SerializedObject serializedAsset = <span class="keyword">new</span> SerializedObject(urpAsset);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>            SerializedProperty rendererListProperty = serializedAsset.FindProperty(<span class="stringliteral">&quot;m_RendererDataList&quot;</span>);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>            <span class="keywordflow">if</span> (rendererListProperty != <span class="keyword">null</span> &amp;&amp; rendererListProperty.isArray)</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>            {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>                <span class="comment">// Check if the renderer exists already in the array</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                <span class="keywordflow">for</span>(<span class="keywordtype">int</span> i = 0; i &lt; rendererListProperty.arraySize; i++)</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                {</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>                    SerializedProperty el = rendererListProperty.GetArrayElementAtIndex(i);</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>                    <span class="keywordflow">if</span>(el.objectReferenceValue == newRenderer)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>                    {</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>                        <span class="comment">// already exists, so we stop here</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>                        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>                    }</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>                }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>                <span class="comment">// Add the renderer to the end of the array</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                <span class="keywordtype">int</span> newIndex = rendererListProperty.arraySize;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                rendererListProperty.InsertArrayElementAtIndex(newIndex);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>                SerializedProperty element = rendererListProperty.GetArrayElementAtIndex(newIndex);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>                element.objectReferenceValue = newRenderer;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>                <span class="comment">// 4. Apply the modified properties</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>                serializedAsset.ApplyModifiedProperties();</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>                <span class="comment">// 5. Save the asset</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>                EditorUtility.SetDirty(urpAsset);</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                AssetDatabase.SaveAssets();</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>            }</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>            <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>            {</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>                Debug.LogError(<span class="stringliteral">&quot;Failed to add Cavern Renderer to URP asset. Please do this manually.&quot;</span>);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>            }</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>        }</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> RoundUISetup(ClickEvent evt)</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>        {</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>            CavernSetup cavernSetup = FindAnyObjectByType&lt;CavernSetup&gt;();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>            <span class="comment">// load from path</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>            GameObject cavernUIPrefab = (GameObject)AssetDatabase.LoadAssetAtPath(<span class="stringliteral">&quot;Packages/com.spelunx.cavern.sdk/Prefabs/CavernUI.prefab&quot;</span>, typeof(GameObject));</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>            GameObject cavernUIInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernUIPrefab as GameObject);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>            GameObject roundCavernMeshRendererPrefab = (GameObject)AssetDatabase.LoadAssetAtPath(<span class="stringliteral">&quot;Packages/com.spelunx.cavern.sdk/Prefabs/RoundCavernMeshRenderer.prefab&quot;</span>, typeof(GameObject));</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>            GameObject roundCavernMeshRendererInstance = (GameObject)PrefabUtility.InstantiatePrefab(roundCavernMeshRendererPrefab as GameObject, cavernSetup.transform);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>            CavernRoundWorldSpaceUIFeature feat = roundCavernMeshRendererInstance.GetComponent&lt;CavernRoundWorldSpaceUIFeature&gt;();</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>            feat.uiCamera = cavernUIInstance.GetComponentInChildren&lt;Camera&gt;();</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>            <span class="comment">// set default parameters of roundUI mesh</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>            feat.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>            <span class="comment">// mark scene as edited to prompt saving</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>        }</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>        <span class="keyword">private</span> <span class="keywordtype">void</span> ScreenSpaceUISetup(ClickEvent evt)</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>        {</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>            CavernSetup cavernSetup = FindAnyObjectByType&lt;CavernSetup&gt;();</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>            <span class="comment">// load from path</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>            GameObject cavernUIPrefab = (GameObject)AssetDatabase.LoadAssetAtPath(<span class="stringliteral">&quot;Packages/com.spelunx.cavern.sdk/Prefabs/CavernUI.prefab&quot;</span>, typeof(GameObject));</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>            GameObject cavernUIInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernUIPrefab as GameObject);</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span> </div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>            CavernScreenSpaceUIFeature feat = cavernSetup.GetComponentInChildren&lt;CavernRenderer&gt;().gameObject.AddComponent&lt;CavernScreenSpaceUIFeature&gt;();</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>            feat.uiCamera = cavernUIInstance.GetComponentInChildren&lt;Camera&gt;();</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>            feat.screenSpaceUIShader = (Shader)AssetDatabase.LoadAssetAtPath(<span class="stringliteral">&quot;Packages/com.spelunx.cavern.sdk/Runtime/Scripts/Canvas/DoublerWithOffset.shadergraph&quot;</span>, typeof(Shader));</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>            feat.CreateMaterial();</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>            <span class="comment">// mark scene as edited to prompt saving</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>        }</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    }</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>}</div>
+<div class="ttc" id="aclassSpelunx_1_1CavernRenderer_html"><div class="ttname"><a href="../../db/d6f/classSpelunx_1_1CavernRenderer.html">Spelunx.CavernRenderer</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d8/d7b/CavernRenderer_8cs_source.html#l00009">CavernRenderer.cs:10</a></div></div>
+<div class="ttc" id="aclassSpelunx_1_1CavernSetup_html"><div class="ttname"><a href="../../d8/d44/classSpelunx_1_1CavernSetup.html">Spelunx.CavernSetup</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d0/d25/CavernSetup_8cs_source.html#l00007">CavernSetup.cs:8</a></div></div>
+<div class="ttc" id="aclassSpelunx_1_1CavernToolsPanel_html"><div class="ttname"><a href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html">Spelunx.CavernToolsPanel</a></div><div class="ttdef"><b>Definition:</b> <a href="../../de/d15/CavernToolsPanel_8cs_source.html#l00010">CavernToolsPanel.cs:11</a></div></div>
+<div class="ttc" id="aclassSpelunx_1_1CavernToolsPanel_html_a213b29893b0b468a624bf56c0185cf28"><div class="ttname"><a href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a213b29893b0b468a624bf56c0185cf28">Spelunx.CavernToolsPanel.CreateGUI</a></div><div class="ttdeci">void CreateGUI()</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d15/CavernToolsPanel_8cs_source.html#l00023">CavernToolsPanel.cs:23</a></div></div>
+<div class="ttc" id="aclassSpelunx_1_1CavernToolsPanel_html_a6a9e8495a1072edf738b48af5a65c40c"><div class="ttname"><a href="../../d4/d7a/classSpelunx_1_1CavernToolsPanel.html#a6a9e8495a1072edf738b48af5a65c40c">Spelunx.CavernToolsPanel.ShowWindow</a></div><div class="ttdeci">static void ShowWindow()</div><div class="ttdef"><b>Definition:</b> <a href="../../de/d15/CavernToolsPanel_8cs_source.html#l00017">CavernToolsPanel.cs:17</a></div></div>
+<div class="ttc" id="anamespaceSpelunx_html"><div class="ttname"><a href="../../d1/d34/namespaceSpelunx.html">Spelunx</a></div><div class="ttdef"><b>Definition:</b> <a href="../../d2/db7/CavernFeatureEditor_8cs_source.html#l00005">CavernFeatureEditor.cs:6</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

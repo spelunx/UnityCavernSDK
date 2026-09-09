@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['high_0',['High',['../db/d6f/classSpelunx_1_1CavernRenderer.html#adda79d22a92ae152c7e6e121e8e07f8da655d20c1ca69519ca647684edbb2db35',1,'Spelunx::CavernRenderer']]],
-  ['hmd_1',['Hmd',['../db/d50/classSpelunx_1_1Vive_1_1OVRT__TrackedObject.html#a0fc4dcf85be9ce65a41e0c766a4ff204aed318299014ad22286c7cbd77387f28c',1,'Spelunx::Vive::OVRT_TrackedObject']]]
+  ['grip_0',['Grip',['../d7/df0/classSpelunx_1_1Vive_1_1ViveController.html#adae61f5d39a9e325a13be497ea55fc6eae6afa392888958511dd5c9e9b1d5a9db',1,'Spelunx::Vive::ViveController']]]
 ];

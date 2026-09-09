@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['veryhigh_0',['VeryHigh',['../db/d6f/classSpelunx_1_1CavernRenderer.html#adda79d22a92ae152c7e6e121e8e07f8daf0b44f10edcd3bdee6720430ac4111cd',1,'Spelunx::CavernRenderer']]],
-  ['verylow_1',['VeryLow',['../db/d6f/classSpelunx_1_1CavernRenderer.html#adda79d22a92ae152c7e6e121e8e07f8da89655e31f5f56a0f7860c4a85b7e9752',1,'Spelunx::CavernRenderer']]]
+  ['update_0',['Update',['../d8/d2a/classSpelunx_1_1Vive_1_1Vive__Manager.html#a5eafc0389549c2571cf52e73f530bef5a06933067aafd48425d67bcb01bba5cb6',1,'Spelunx::Vive::Vive_Manager']]]
 ];

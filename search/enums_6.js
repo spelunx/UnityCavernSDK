@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['updatemode_0',['UpdateMode',['../d8/d2a/classSpelunx_1_1Vive_1_1Vive__Manager.html#a5eafc0389549c2571cf52e73f530bef5',1,'Spelunx::Vive::Vive_Manager']]]
+  ['role_0',['Role',['../d7/df0/classSpelunx_1_1Vive_1_1ViveController.html#ad551bf450b55f0b9f6b570c2f19c2fab',1,'Spelunx::Vive::ViveController']]]
 ];

@@ -2,8 +2,8 @@ var searchData=
 [
   ['velocitydrag_0',['velocityDrag',['../d6/d37/classBuoyantObject.html#a897447ab3e630632e5df3581295eb37f',1,'BuoyantObject']]],
   ['verbose_1',['verbose',['../d6/d9b/classSpelunx_1_1Vive_1_1OVRT__RenderModel.html#a3a1e46818c04951f42665608197af8a3',1,'Spelunx::Vive::OVRT_RenderModel']]],
-  ['veryhigh_2',['VeryHigh',['../db/d6f/classSpelunx_1_1CavernRenderer.html#adda79d22a92ae152c7e6e121e8e07f8daf0b44f10edcd3bdee6720430ac4111cd',1,'Spelunx::CavernRenderer']]],
-  ['verylow_3',['VeryLow',['../db/d6f/classSpelunx_1_1CavernRenderer.html#adda79d22a92ae152c7e6e121e8e07f8da89655e31f5f56a0f7860c4a85b7e9752',1,'Spelunx::CavernRenderer']]],
+  ['veryhigh_2',['VeryHigh',['../d9/d02/classSpelunx_1_1CavernBaseRenderFeature.html#a509a99964b5775c06012846535d4e9f9af0b44f10edcd3bdee6720430ac4111cd',1,'Spelunx::CavernBaseRenderFeature']]],
+  ['verylow_3',['VeryLow',['../d9/d02/classSpelunx_1_1CavernBaseRenderFeature.html#a509a99964b5775c06012846535d4e9f9a89655e31f5f56a0f7860c4a85b7e9752',1,'Spelunx::CavernBaseRenderFeature']]],
   ['vive_5fmanager_4',['Vive_Manager',['../d8/d2a/classSpelunx_1_1Vive_1_1Vive__Manager.html',1,'Spelunx::Vive']]],
   ['vive_5fmanager_2ecs_5',['Vive_Manager.cs',['../d6/d2c/Vive__Manager_8cs.html',1,'']]],
   ['vivecontroller_6',['ViveController',['../d7/df0/classSpelunx_1_1Vive_1_1ViveController.html',1,'Spelunx::Vive']]],

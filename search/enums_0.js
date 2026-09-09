@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['cubemapresolution_0',['CubemapResolution',['../db/d6f/classSpelunx_1_1CavernRenderer.html#adda79d22a92ae152c7e6e121e8e07f8d',1,'Spelunx::CavernRenderer']]]
+  ['autopositionmode_0',['AutopositionMode',['../d2/d46/classSpelunx_1_1CavernRoundWorldSpaceUIFeature.html#a84db42d362bc50a974771cf44eada967',1,'Spelunx::CavernRoundWorldSpaceUIFeature']]]
 ];

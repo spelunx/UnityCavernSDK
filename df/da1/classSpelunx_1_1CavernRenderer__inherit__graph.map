@@ -1,4 +1,5 @@
 <map id="Spelunx.CavernRenderer" name="Spelunx.CavernRenderer">
-<area shape="rect" id="node1" title=" " alt="" coords="5,131,207,413"/>
-<area shape="rect" id="node2" title=" " alt="" coords="44,5,168,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,329,188,407"/>
+<area shape="rect" id="node2" href="$da/da6/classSpelunx_1_1CavernFeature.html" title=" " alt="" coords="37,131,156,281"/>
+<area shape="rect" id="node3" title=" " alt="" coords="35,5,159,83"/>
 </map>

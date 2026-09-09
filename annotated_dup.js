@@ -15,6 +15,11 @@ var annotated_dup =
         [ "FrameData", "d6/d02/classSpelunx_1_1Orbbec_1_1FrameData.html", "d6/d02/classSpelunx_1_1Orbbec_1_1FrameData" ],
         [ "FrameDataProvider", "d6/dad/classSpelunx_1_1Orbbec_1_1FrameDataProvider.html", "d6/dad/classSpelunx_1_1Orbbec_1_1FrameDataProvider" ]
       ] ],
+      [ "Samples", "d8/d4f/namespaceSpelunx_1_1Samples.html", [
+        [ "SoundTester", "d5/d52/namespaceSpelunx_1_1Samples_1_1SoundTester.html", [
+          [ "SoundController", "dd/db7/classSpelunx_1_1Samples_1_1SoundTester_1_1SoundController.html", "dd/db7/classSpelunx_1_1Samples_1_1SoundTester_1_1SoundController" ]
+        ] ]
+      ] ],
       [ "Vive", "d9/ddb/namespaceSpelunx_1_1Vive.html", [
         [ "CavernInteraction", "d3/d86/classSpelunx_1_1Vive_1_1CavernInteraction.html", "d3/d86/classSpelunx_1_1Vive_1_1CavernInteraction" ],
         [ "EvadeInteraction", "d7/d67/classSpelunx_1_1Vive_1_1EvadeInteraction.html", "d7/d67/classSpelunx_1_1Vive_1_1EvadeInteraction" ],
@@ -38,16 +43,32 @@ var annotated_dup =
         [ "ViveTracker", "df/d90/classSpelunx_1_1Vive_1_1ViveTracker.html", "df/d90/classSpelunx_1_1Vive_1_1ViveTracker" ],
         [ "Zones", "d4/d24/classSpelunx_1_1Vive_1_1Zones.html", "d4/d24/classSpelunx_1_1Vive_1_1Zones" ]
       ] ],
-      [ "CavernDebugKeys", "d3/d24/classSpelunx_1_1CavernDebugKeys.html", "d3/d24/classSpelunx_1_1CavernDebugKeys" ],
-      [ "CavernRenderer", "db/d6f/classSpelunx_1_1CavernRenderer.html", "db/d6f/classSpelunx_1_1CavernRenderer" ],
+      [ "CavernBaseRenderFeature", "d9/d02/classSpelunx_1_1CavernBaseRenderFeature.html", "d9/d02/classSpelunx_1_1CavernBaseRenderFeature" ],
+      [ "CavernDebugKeysFeature", "dc/d05/classSpelunx_1_1CavernDebugKeysFeature.html", "dc/d05/classSpelunx_1_1CavernDebugKeysFeature" ],
+      [ "CavernFeature", "da/da6/classSpelunx_1_1CavernFeature.html", "da/da6/classSpelunx_1_1CavernFeature" ],
+      [ "CavernFeatureEditor", "dc/d6b/classSpelunx_1_1CavernFeatureEditor.html", "dc/d6b/classSpelunx_1_1CavernFeatureEditor" ],
+      [ "CavernFeatureSet", "d5/d26/classSpelunx_1_1CavernFeatureSet.html", "d5/d26/classSpelunx_1_1CavernFeatureSet" ],
+      [ "CavernFeatureSetEditor", "da/d12/classSpelunx_1_1CavernFeatureSetEditor.html", "da/d12/classSpelunx_1_1CavernFeatureSetEditor" ],
+      [ "CavernPreviewFeature", "d3/d3f/classSpelunx_1_1CavernPreviewFeature.html", "d3/d3f/classSpelunx_1_1CavernPreviewFeature" ],
+      [ "CavernRenderer", "db/d6f/classSpelunx_1_1CavernRenderer.html", null ],
       [ "CavernRenderPass", "d3/d01/classSpelunx_1_1CavernRenderPass.html", "d3/d01/classSpelunx_1_1CavernRenderPass" ],
+      [ "CavernRoundWorldSpaceUIFeature", "d2/d46/classSpelunx_1_1CavernRoundWorldSpaceUIFeature.html", "d2/d46/classSpelunx_1_1CavernRoundWorldSpaceUIFeature" ],
+      [ "CavernScreenSpaceUIFeature", "d5/d1f/classSpelunx_1_1CavernScreenSpaceUIFeature.html", "d5/d1f/classSpelunx_1_1CavernScreenSpaceUIFeature" ],
+      [ "CavernScreenSpaceUIRenderPass", "db/d94/classSpelunx_1_1CavernScreenSpaceUIRenderPass.html", "db/d94/classSpelunx_1_1CavernScreenSpaceUIRenderPass" ],
+      [ "CavernSetup", "d8/d44/classSpelunx_1_1CavernSetup.html", "d8/d44/classSpelunx_1_1CavernSetup" ],
       [ "CavernToolsPanel", "d4/d7a/classSpelunx_1_1CavernToolsPanel.html", "d4/d7a/classSpelunx_1_1CavernToolsPanel" ],
+      [ "CavernWarpingFeature", "dc/d81/classSpelunx_1_1CavernWarpingFeature.html", "dc/d81/classSpelunx_1_1CavernWarpingFeature" ],
+      [ "CavernWarpPass", "d6/d0d/classSpelunx_1_1CavernWarpPass.html", "d6/d0d/classSpelunx_1_1CavernWarpPass" ],
       [ "DirectCanvasRenderPass", "da/da0/classSpelunx_1_1DirectCanvasRenderPass.html", "da/da0/classSpelunx_1_1DirectCanvasRenderPass" ],
-      [ "IDebugKeys", "d1/df7/interfaceSpelunx_1_1IDebugKeys.html", "d1/df7/interfaceSpelunx_1_1IDebugKeys" ],
+      [ "DisallowMultipleCavernFeature", "db/d84/classSpelunx_1_1DisallowMultipleCavernFeature.html", "db/d84/classSpelunx_1_1DisallowMultipleCavernFeature" ],
+      [ "DisplayActivator", "d0/d67/classSpelunx_1_1DisplayActivator.html", null ],
+      [ "ICavernDebugKeysFeature", "dd/d01/interfaceSpelunx_1_1ICavernDebugKeysFeature.html", "dd/d01/interfaceSpelunx_1_1ICavernDebugKeysFeature" ],
+      [ "ICavernRenderFeature", "d9/d5a/interfaceSpelunx_1_1ICavernRenderFeature.html", "d9/d5a/interfaceSpelunx_1_1ICavernRenderFeature" ],
       [ "MathsUtil", "da/d53/classSpelunx_1_1MathsUtil.html", "da/d53/classSpelunx_1_1MathsUtil" ],
       [ "OrbbecToolsPanel", "d2/de4/classSpelunx_1_1OrbbecToolsPanel.html", "d2/de4/classSpelunx_1_1OrbbecToolsPanel" ],
       [ "ScreenSpaceCanvasRenderer", "d7/dba/classSpelunx_1_1ScreenSpaceCanvasRenderer.html", null ],
       [ "TagUtil", "d5/d33/classSpelunx_1_1TagUtil.html", "d5/d33/classSpelunx_1_1TagUtil" ],
+      [ "TestFeatureSet", "db/d2d/classSpelunx_1_1TestFeatureSet.html", "db/d2d/classSpelunx_1_1TestFeatureSet" ],
       [ "ViveToolsPanel", "d7/d07/classSpelunx_1_1ViveToolsPanel.html", "d7/d07/classSpelunx_1_1ViveToolsPanel" ],
       [ "WorldSpaceMeshCanvas", "d8/d78/classSpelunx_1_1WorldSpaceMeshCanvas.html", "d8/d78/classSpelunx_1_1WorldSpaceMeshCanvas" ]
     ] ],
@@ -62,7 +83,6 @@ var annotated_dup =
     [ "MirroringState", "d6/dfb/classMirroringState.html", "d6/dfb/classMirroringState" ],
     [ "OnGroundState", "d3/df8/classOnGroundState.html", "d3/df8/classOnGroundState" ],
     [ "SampleDebugKeys", "d3/daf/classSampleDebugKeys.html", "d3/daf/classSampleDebugKeys" ],
-    [ "SoundController", "d0/d36/classSoundController.html", "d0/d36/classSoundController" ],
     [ "StartState", "d9/d1e/classStartState.html", "d9/d1e/classStartState" ],
     [ "State", "d7/d97/classState.html", "d7/d97/classState" ],
     [ "TrackerData", "dd/d17/classTrackerData.html", "dd/d17/classTrackerData" ],

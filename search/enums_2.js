@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['orbitmode_0',['OrbitMode',['../da/d7d/classSpelunx_1_1Vive_1_1OrbitCavernInteraction.html#a32849e0a86c4c43c3193866649cd3468',1,'Spelunx::Vive::OrbitCavernInteraction']]]
+  ['dirtystate_0',['DirtyState',['../d5/d26/classSpelunx_1_1CavernFeatureSet.html#a37c4a368f6ca22f61d4ae6a1c0de5f9a',1,'Spelunx::CavernFeatureSet']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['right_0',['Right',['../db/d6f/classSpelunx_1_1CavernRenderer.html#a65352713d5d939de15753f5241cae657a92b09c7c48c520c3c55e497875da437c',1,'Spelunx::CavernRenderer']]],
-  ['righthand_1',['RightHand',['../d7/df0/classSpelunx_1_1Vive_1_1ViveController.html#ad551bf450b55f0b9f6b570c2f19c2fabaa51983e0f69f76a68e55efe2e7b700b5',1,'Spelunx.Vive.ViveController.RightHand()'],['../df/d90/classSpelunx_1_1Vive_1_1ViveTracker.html#a6af32deb8f3294cb1ee14de6883fda94aa51983e0f69f76a68e55efe2e7b700b5',1,'Spelunx.Vive.ViveTracker.RightHand()']]]
+  ['off_0',['OFF',['../d2/d46/classSpelunx_1_1CavernRoundWorldSpaceUIFeature.html#a84db42d362bc50a974771cf44eada967a88559a0cfd8250c9d65970cc145c92d4',1,'Spelunx::CavernRoundWorldSpaceUIFeature']]],
+  ['onprecull_1',['OnPreCull',['../d8/d2a/classSpelunx_1_1Vive_1_1Vive__Manager.html#a5eafc0389549c2571cf52e73f530bef5a0384dab65f333cc4dd5858f28513ee82',1,'Spelunx::Vive::Vive_Manager']]],
+  ['other_2',['Other',['../d5/d26/classSpelunx_1_1CavernFeatureSet.html#a37c4a368f6ca22f61d4ae6a1c0de5f9aa6311ae17c1ee52b36e68aaf4ad066387',1,'Spelunx::CavernFeatureSet']]]
 ];
