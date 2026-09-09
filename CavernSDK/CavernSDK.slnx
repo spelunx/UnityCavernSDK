@@ -1,0 +1,19 @@
+﻿<Solution>
+  <Project Path="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.csproj" />
+  <Project Path="Spelunx.Cavern.Orbbec.SDK.csproj" />
+  <Project Path="Spelunx.Cavern.Orbbec.SDK.Editor.csproj" />
+  <Project Path="Unity.XR.OpenVR.csproj" />
+  <Project Path="Spelunx.XR.Vive.SteamVRCalibration.csproj" />
+  <Project Path="Spelunx.Vive.Tracking.csproj" />
+  <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Spelunx.Cavern.SDK.csproj" />
+  <Project Path="Unity.XR.OpenVR.Editor.csproj" />
+  <Project Path="ControllerSample.csproj" />
+  <Project Path="Spelunx.XR.Vive.csproj" />
+  <Project Path="Spelunx.Cavern.SDK.Editor.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Spelunx.CAVERN.Vive.Editor.csproj" />
+  <Project Path="Spelunx.Cavern.Orbbec.Libs.Editor.csproj" />
+  <Project Path="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.csproj" />
+  <Project Path="Spelunx.XR.Vive.Editor.csproj" />
+</Solution>

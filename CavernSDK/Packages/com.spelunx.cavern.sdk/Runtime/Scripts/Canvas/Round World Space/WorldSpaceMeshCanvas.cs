@@ -6,8 +6,8 @@ namespace Spelunx
     [RequireComponent(typeof(MeshRenderer), typeof(MeshFilter))]
     public class WorldSpaceMeshCanvas : MonoBehaviour
     {
-        [SerializeField, Tooltip("A reference to the Cavern Camera")]
-        private CavernRenderer cavernRenderer;
+        [SerializeField, Tooltip("A reference to the Cavern Setup")]
+        private CavernSetup cavernSetup;
 
         [SerializeField, Tooltip("Distance from the screen to render. 0 is purely at the center, 1 is at the boundry"), Min(0)]
         private float distance = 1.0f;
@@ -22,7 +22,7 @@ namespace Spelunx
         void Start()
         {
             UpdateMesh();
-            cavernRenderer.settingsChanged.AddListener(() => shouldUpdateMesh = true);
+            cavernSetup.settingsChanged.AddListener(() => shouldUpdateMesh = true);
         }
 
         void Update()
@@ -35,7 +35,7 @@ namespace Spelunx
             if (autoposition)
             {
                 // center the mesh on the cavern's center by moving the y position down based on the difference in cavern height vs mesh height
-                float yOffset = -cavernRenderer.GetCavernHeight() * (distance - 1) / 2;
+                float yOffset = -cavernSetup.CavernHeight * (distance - 1) / 2;
                 transform.localPosition = new(transform.localPosition.x, yOffset, transform.localPosition.z);
             }
         }
@@ -43,7 +43,7 @@ namespace Spelunx
         // Create the mesh based on CAVERN size
         void UpdateMesh()
         {
-            mesh = cavernRenderer.GenerateMesh();
+            mesh = cavernSetup.GenerateMesh();
             mesh.name = "Round Canvas Mesh";
             GetComponent<MeshFilter>().mesh = mesh;
             transform.localScale = new(distance, distance, distance);
@@ -54,8 +54,9 @@ namespace Spelunx
             shouldUpdateMesh = true;
         }
 
-        public void setCavernRenderer(CavernRenderer renderer) {
-            cavernRenderer = renderer;
+        public void SetCavernRenderer(CavernSetup setup)
+        {
+            cavernSetup = setup;
         }
     }
 }

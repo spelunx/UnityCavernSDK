@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 namespace Spelunx
 {
@@ -29,27 +30,34 @@ namespace Spelunx
             root.Add(panelSetup);
 
             VisualElement roundUI = root.Q("RoundUISetup");
+            VisualElement screenSpaceUI = root.Q("ScreenSpaceUISetup");
 
-            // Add button functionality for CAVERN setup and round UI setup
-            Button cavernSetupButton = root.Q<Button>("CavernSetupButton");
-            cavernSetupButton.RegisterCallback<ClickEvent, VisualElement>(CavernSetup, roundUI);
-
-            Button roundUISetupButton = root.Q<Button>("RoundUISetupButton");
-
-            CavernRenderer cavernRenderer = FindFirstObjectByType<CavernRenderer>();
+            CavernRenderer cavernRenderer = FindAnyObjectByType<CavernRenderer>();
 
             // Hides roundUI setup if no CAVERN setup present in scene since it depends on the setup
             if (cavernRenderer == null)
             {
                 roundUI.style.visibility = Visibility.Hidden;
+                screenSpaceUI.style.visibility = Visibility.Hidden;
             }
+
+            // Add button functionality for CAVERN setup
+            Button cavernSetupButton = root.Q<Button>("CavernSetupButton");
+            cavernSetupButton.RegisterCallback<ClickEvent, VisualElement>(CavernSetup, roundUI);
+
+            // Add button functionality for Round UI setup
+            Button roundUISetupButton = root.Q<Button>("RoundUISetupButton");
             roundUISetupButton.RegisterCallback<ClickEvent>(RoundUISetup);
+
+            // Add button functionality for Screen Space UI setup
+            Button screenSpaceUISetupButton = root.Q<Button>("ScreenSpaceUISetupButton");
+            screenSpaceUISetupButton.RegisterCallback<ClickEvent>(ScreenSpaceUISetup);
         }
 
         private void CavernSetup(ClickEvent evt, VisualElement roundUI)
         {
             // load from path
-            GameObject cavernSetupPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/CavernSetup.prefab", typeof(GameObject));
+            GameObject cavernSetupPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/Cavern Setup.prefab", typeof(GameObject));
             GameObject cavernSetupInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernSetupPrefab as GameObject);
 
             // sets speaker mode to 7.1 surround
@@ -64,6 +72,8 @@ namespace Spelunx
                 Undo.DestroyObjectImmediate(GameObject.FindGameObjectWithTag("MainCamera"));
             }
 
+            AddRendererToURPAsset();
+
             // mark scene as edited to prompt saving
             EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
 
@@ -71,24 +81,88 @@ namespace Spelunx
             roundUI.style.visibility = Visibility.Visible;
         }
 
+        private void AddRendererToURPAsset()
+        {
+
+            UniversalRenderPipelineAsset urpAsset = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>("Assets/Settings/PC_RPAsset.asset");
+            ScriptableRendererData newRenderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>("Packages/com.spelunx.cavern.sdk/Runtime/Scripts/Camera/Cavern Renderer.asset");
+
+            if (urpAsset == null || newRenderer == null)
+            {
+                Debug.LogError("Failed to add Cavern Renderer to URP asset. Please do this manually.");
+                return;
+            }
+
+            SerializedObject serializedAsset = new SerializedObject(urpAsset);
+            SerializedProperty rendererListProperty = serializedAsset.FindProperty("m_RendererDataList");
+
+            if (rendererListProperty != null && rendererListProperty.isArray)
+            {
+                // Check if the renderer exists already in the array
+                for(int i = 0; i < rendererListProperty.arraySize; i++)
+                {
+                    SerializedProperty el = rendererListProperty.GetArrayElementAtIndex(i);
+                    if(el.objectReferenceValue == newRenderer)
+                    {
+                        // already exists, so we stop here
+                        return;
+                    }
+                }
+
+                // Add the renderer to the end of the array
+                int newIndex = rendererListProperty.arraySize;
+                rendererListProperty.InsertArrayElementAtIndex(newIndex);
+
+                SerializedProperty element = rendererListProperty.GetArrayElementAtIndex(newIndex);
+                element.objectReferenceValue = newRenderer;
+
+                // 4. Apply the modified properties
+                serializedAsset.ApplyModifiedProperties();
+
+                // 5. Save the asset
+                EditorUtility.SetDirty(urpAsset);
+                AssetDatabase.SaveAssets();
+            }
+            else
+            {
+                Debug.LogError("Failed to add Cavern Renderer to URP asset. Please do this manually.");
+            }
+        }
+
         private void RoundUISetup(ClickEvent evt)
         {
-            CavernRenderer cavernRenderer = FindFirstObjectByType<CavernRenderer>();
+            CavernSetup cavernSetup = FindAnyObjectByType<CavernSetup>();
 
             // load from path
             GameObject cavernUIPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/CavernUI.prefab", typeof(GameObject));
             GameObject cavernUIInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernUIPrefab as GameObject);
 
             GameObject roundCavernMeshRendererPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/RoundCavernMeshRenderer.prefab", typeof(GameObject));
-            GameObject roundCavernMeshRendererInstance = (GameObject)PrefabUtility.InstantiatePrefab(roundCavernMeshRendererPrefab as GameObject);
+            GameObject roundCavernMeshRendererInstance = (GameObject)PrefabUtility.InstantiatePrefab(roundCavernMeshRendererPrefab as GameObject, cavernSetup.transform);
+            CavernRoundWorldSpaceUIFeature feat = roundCavernMeshRendererInstance.GetComponent<CavernRoundWorldSpaceUIFeature>();
 
-            WorldSpaceMeshCanvas meshCanvas = roundCavernMeshRendererInstance.GetComponent<WorldSpaceMeshCanvas>();
-            meshCanvas.setCavernRenderer(cavernRenderer);
+            feat.uiCamera = cavernUIInstance.GetComponentInChildren<Camera>();
 
             // set default parameters of roundUI mesh
-            meshCanvas.transform.parent = cavernRenderer.transform;
-            meshCanvas.transform.localPosition = Vector3.zero;
-            meshCanvas.transform.localRotation = Quaternion.identity;
+            feat.transform.SetLocalPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+            // mark scene as edited to prompt saving
+            EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
+        }
+
+        private void ScreenSpaceUISetup(ClickEvent evt)
+        {
+            CavernSetup cavernSetup = FindAnyObjectByType<CavernSetup>();
+
+            // load from path
+            GameObject cavernUIPrefab = (GameObject)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Prefabs/CavernUI.prefab", typeof(GameObject));
+            GameObject cavernUIInstance = (GameObject)PrefabUtility.InstantiatePrefab(cavernUIPrefab as GameObject);
+
+
+            CavernScreenSpaceUIFeature feat = cavernSetup.GetComponentInChildren<CavernRenderer>().gameObject.AddComponent<CavernScreenSpaceUIFeature>();
+            feat.uiCamera = cavernUIInstance.GetComponentInChildren<Camera>();
+            feat.screenSpaceUIShader = (Shader)AssetDatabase.LoadAssetAtPath("Packages/com.spelunx.cavern.sdk/Runtime/Scripts/Canvas/DoublerWithOffset.shadergraph", typeof(Shader));
+            feat.CreateMaterial();
 
             // mark scene as edited to prompt saving
             EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());

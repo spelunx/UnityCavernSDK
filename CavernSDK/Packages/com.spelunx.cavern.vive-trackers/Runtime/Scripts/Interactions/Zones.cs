@@ -14,8 +14,8 @@ namespace Spelunx.Vive
         [Tooltip("The radius in the middle of the CAVERN that acts as a deadzone, to avoid rapid angle changes.")]
         public float innerDeadZone = 1;
 
-        [Tooltip("The CAVERN renderer, needed to get angle and radius information.")]
-        public CavernRenderer cavern;
+        [Tooltip("The CAVERN setup, needed to get angle and radius information.")]
+        public CavernSetup cavern;
 
         [Tooltip("Each object you want to track through zones should have an entry in this array.")]
         public ZonedTracker[] zonedTrackers;
@@ -40,8 +40,8 @@ namespace Spelunx.Vive
                 tracker_pos.y = cavern.transform.position.y;
 
                 float angle = Vector3.SignedAngle(tracker_pos - transform.position, Vector3.forward, Vector3.down);
-                angle += cavern.GetCavernAngle() / 2; // realign zero to left side of cavern
-                if (angle < 0 || angle >= cavern.GetCavernAngle())
+                angle += cavern.CavernAngle / 2; // realign zero to left side of cavern
+                if (angle < 0 || angle >= cavern.CavernAngle)
                 {
                     zonedTrackers[i].zone = -1; // angles that are outside of the swoop of the cavern are in the deadzone
                     zonedTrackers[i].distance = 0;
@@ -55,8 +55,8 @@ namespace Spelunx.Vive
                 }
                 else
                 {
-                    zonedTrackers[i].zone = (int)Mathf.Floor(angle / (cavern.GetCavernAngle() / numZones));
-                    zonedTrackers[i].distance = Mathf.InverseLerp(innerDeadZone, cavern.GetCavernRadius(), distance);
+                    zonedTrackers[i].zone = (int)Mathf.Floor(angle / (cavern.CavernAngle / numZones));
+                    zonedTrackers[i].distance = Mathf.InverseLerp(innerDeadZone, cavern.CavernRadius, distance);
                 }
             }
         }
@@ -65,13 +65,13 @@ namespace Spelunx.Vive
         void OnDrawGizmos()
         {
             Handles.DrawWireDisc(transform.position, Vector3.up, innerDeadZone);
-            float cavernAngle = cavern.GetCavernAngle() * Mathf.PI / 180;
+            float cavernAngle = cavern.CavernAngle * Mathf.PI / 180;
             float angle = -cavernAngle / 2;
             float deltaAngle = cavernAngle / numZones;
             for (int i = 0; i < numZones + 1; i++)
             {
                 Vector3 angleLine = new(Mathf.Sin(angle), 0, Mathf.Cos(angle));
-                Gizmos.DrawLine(innerDeadZone * angleLine + transform.position, cavern.GetCavernRadius() * angleLine + transform.position);
+                Gizmos.DrawLine(innerDeadZone * angleLine + transform.position, cavern.CavernRadius * angleLine + transform.position);
                 angle += deltaAngle;
             }
         }

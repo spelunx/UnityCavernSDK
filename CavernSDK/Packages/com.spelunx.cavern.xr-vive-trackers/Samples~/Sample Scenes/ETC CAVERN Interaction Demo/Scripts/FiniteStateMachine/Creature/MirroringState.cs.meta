@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: 712866954e0ef5643bfadadca618dc2f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - countdownVFXPrefab: {fileID: 6488134313764938138, guid: 7379e0b42e901ba4085873126efb5d6f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

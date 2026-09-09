@@ -174,7 +174,7 @@ namespace Spelunx
                     if (typeof(T).IsSubclassOf(typeof(CavernInteraction)))
                     {
                         CavernInteraction cavernInteraction = interaction as CavernInteraction;
-                        cavernInteraction.SetCavernRenderer(FindFirstObjectByType<CavernRenderer>());
+                        cavernInteraction.SetCavernSetup(FindFirstObjectByType<CavernSetup>());
                     }
                 }
             }
@@ -184,7 +184,7 @@ namespace Spelunx
         private void AddZones(ClickEvent evt)
         {
             Zones component = FindObjectsByType<Vive_Manager>(FindObjectsSortMode.None)[0].gameObject.AddComponent(typeof(Zones)) as Zones;
-            component.cavern = FindFirstObjectByType<CavernRenderer>();
+            component.cavern = FindFirstObjectByType<CavernSetup>();
         }
     }
 }

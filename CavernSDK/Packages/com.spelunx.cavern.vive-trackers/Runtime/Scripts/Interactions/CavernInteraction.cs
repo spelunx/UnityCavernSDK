@@ -4,9 +4,9 @@ namespace Spelunx.Vive
 {
     public abstract class CavernInteraction : Interaction
     {
-        [SerializeField, Tooltip("The CAVERN renderer, needed for CAVERN dimensions.")] protected CavernRenderer cavernRenderer = null;
+        [SerializeField, Tooltip("The CAVERN setup, needed for CAVERN dimensions.")] protected CavernSetup cavernSetup = null;
 
-        public CavernRenderer GetCavernRenderer() { return cavernRenderer; }
-        public void SetCavernRenderer(CavernRenderer cavernRenderer) { this.cavernRenderer = cavernRenderer; }
+        public CavernSetup GetCavernSetup() { return cavernSetup; }
+        public void SetCavernSetup(CavernSetup cavernSetup) { this.cavernSetup = cavernSetup; }
     }
 }

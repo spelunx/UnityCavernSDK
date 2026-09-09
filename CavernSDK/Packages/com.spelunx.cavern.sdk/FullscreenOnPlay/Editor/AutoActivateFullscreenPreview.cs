@@ -14,11 +14,13 @@ namespace Spelunx.Fullscreen
 
         private static void OnPlayModeStateChanged(PlayModeStateChange state)
         {
-            if (EditorPrefs.GetBool(IsFullscreenPreviewEnabledKey, false))
+            int whichDisplay = EditorPrefs.GetInt(IsFullscreenPreviewEnabledKey, -1);
+            // if (EditorPrefs.GetBool(IsFullscreenPreviewEnabledKey, false))
+            if (whichDisplay != -1)
             {
                 if (state == PlayModeStateChange.EnteredPlayMode)
                 {
-                    FullscreenGameView.SetFullscreen(true);
+                    FullscreenGameView.SetFullscreen(true, whichDisplay);
                 }
                 if (state == PlayModeStateChange.ExitingPlayMode)
                 {

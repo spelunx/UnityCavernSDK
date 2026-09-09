@@ -1,0 +1,18 @@
+{
+  "name": "com.spelunx.cavern.orbbec.libs",
+  "version": "0.0.5",
+  "displayName": "Spelunx Cavern Orbbec Libraries",
+  "description": "Library dependency files for ORBBEC sensors.",
+  "unity": "6000.0",
+  "documentationUrl": "https://github.com/spelunx/UnityCavernSDK",
+  "keywords": [
+    "orbbec"
+  ],
+  "author": {
+    "name": "Spelunx",
+    "url": "https://spelunx.github.io/UnityCavernSDK/",
+    "email": "lim.terri@outlook.com"
+  },
+  "hideInEditor": false,
+  "_fingerprint": "7824886d1d0d217f99846295b48166c524cbc99f"
+}

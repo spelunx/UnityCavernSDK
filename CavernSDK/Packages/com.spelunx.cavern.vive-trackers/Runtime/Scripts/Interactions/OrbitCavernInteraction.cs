@@ -1,12 +1,15 @@
 using UnityEngine;
 
-namespace Spelunx.Vive {
+namespace Spelunx.Vive
+{
     /*
      * This script assumes the CAVERN screen is a mirror, and the object holding this script will be mirrored.
      * A deadzone radius value can be assigned to prevent area near the center reflecting endlessly and spinning around.
      */
-    public class OrbitCavernInteraction : CavernInteraction {
-        public enum OrbitMode {
+    public class OrbitCavernInteraction : CavernInteraction
+    {
+        public enum OrbitMode
+        {
             Default = 0,
             MirrorDistance,
             FixedDistance
@@ -25,17 +28,19 @@ namespace Spelunx.Vive {
         public OrbitMode GetOrbitMode() { return orbitMode; }
         public void SetOrbitMode(OrbitMode orbitMode) { this.orbitMode = orbitMode; }
 
-        private void Update() {
-            if (target == null || cavernRenderer == null) return;
+        private void Update()
+        {
+            if (target == null || cavernSetup == null) return;
 
             // Set position.
             Vector3 targetPosition = new Vector3(target.position.x, 0.0f, target.position.z);
-            Vector3 cavernPosition = new Vector3(cavernRenderer.transform.position.x, 0.0f, cavernRenderer.transform.position.z);
+            Vector3 cavernPosition = new Vector3(cavernSetup.transform.position.x, 0.0f, cavernSetup.transform.position.z);
             Vector3 cavernToTarget = targetPosition - cavernPosition;
             if (cavernToTarget.magnitude < deadZoneRadius) return;
-            float screenRadius = cavernRenderer.GetCavernRadius();
+            float screenRadius = cavernSetup.CavernRadius;
 
-            switch (orbitMode) {
+            switch (orbitMode)
+            {
                 case OrbitMode.MirrorDistance:
                     transform.position = cavernPosition +
                                  new Vector3(0.0f, target.position.y, 0.0f) +
@@ -55,8 +60,9 @@ namespace Spelunx.Vive {
             }
 
             // Set Rotation.
-            if (lookAtCentre) {
-                transform.LookAt(new Vector3(cavernRenderer.transform.position.x, target.position.y, cavernRenderer.transform.position.z));
+            if (lookAtCentre)
+            {
+                transform.LookAt(new Vector3(cavernSetup.transform.position.x, target.position.y, cavernSetup.transform.position.z));
             }
         }
     }

@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using UnityEditor;
@@ -55,7 +56,7 @@ namespace Spelunx.Fullscreen
             FindMethod(gameView.GetType(), "SetTargetDisplay", typeof(int))?.Invoke(gameView, new object[] { displayIndex });
         }
 
-        public static void EnterFullscreen()
+        public static void EnterFullscreen(int whichDisplay = 1)
         {
             if (GameViewType == null)
             {
@@ -72,7 +73,7 @@ namespace Spelunx.Fullscreen
             {
                 instance.Close();
                 instance = null;
-                SetGameViewTargetDisplay(DISPLAY_0);
+                SetGameViewTargetDisplay(whichDisplay);
             }
             else
             {
@@ -80,11 +81,27 @@ namespace Spelunx.Fullscreen
                 instance = (EditorWindow)ScriptableObject.CreateInstance(GameViewType);
                 var containerWindow = ScriptableObject.CreateInstance(ContainerWindowType);
                 var hostView = ScriptableObject.CreateInstance(HostViewType);
+                FindMethod(instance.GetType(), "SetTargetDisplay", typeof(int))?.Invoke(instance, new object[] { whichDisplay });
 
                 ShowToolbarProperty?.SetValue(instance, false);
-
-                Vector2 position = Vector2.zero;
-                Vector2 resolution = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height) / EditorGUIUtility.pixelsPerPoint;
+                List<DisplayInfo> screens = new();
+                Screen.GetDisplayLayout(screens);
+                // foreach (var thing in screens)
+                // {
+                //     Debug.Log($"Display width: {thing.width}\theight: {thing.height}\t dpi: {thing.physicalDpi}");
+                // }
+                Vector2 position;
+                Vector2 resolution;
+                if (whichDisplay == 1)
+                {
+                    position = new(-screens[1].width, 0);
+                    resolution = new(screens[1].width, screens[1].height);// / EditorGUIUtility.pixelsPerPoint;
+                }
+                else
+                {
+                    position = Vector2.zero;
+                    resolution = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height) / EditorGUIUtility.pixelsPerPoint;
+                }
 
                 FindProperty(HostViewType, "actualView")?.SetValue(hostView, instance);
 
@@ -114,11 +131,11 @@ namespace Spelunx.Fullscreen
         }
 
 
-        public static void SetFullscreen(bool fullscreen)
+        public static void SetFullscreen(bool fullscreen, int monitor = 1)
         {
             if (instance == null && fullscreen)
             {
-                EnterFullscreen();
+                EnterFullscreen(monitor);
             }
             else if (instance != null && !fullscreen)
             {
@@ -129,7 +146,15 @@ namespace Spelunx.Fullscreen
         private static void CloseFullscreenAfterDelay()
         {
             instance.Close();
-            SetGameViewTargetDisplay(DISPLAY_0);
+            int whichDisplay = EditorPrefs.GetInt(AutoActivateFullscreenPreview.IsFullscreenPreviewEnabledKey, -1);
+            if (whichDisplay >= 0)
+            {
+                SetGameViewTargetDisplay(whichDisplay);
+            }
+            else
+            {
+                SetGameViewTargetDisplay(DISPLAY_0);
+            }
             EditorApplication.delayCall -= CloseFullscreenAfterDelay;
         }
 
