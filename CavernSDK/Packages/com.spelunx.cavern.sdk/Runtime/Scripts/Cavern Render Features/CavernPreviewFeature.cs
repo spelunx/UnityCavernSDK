@@ -15,6 +15,13 @@ namespace Spelunx
 
         [SerializeField] private Material previewMaterial;
 
+#if !UNITY_EDITOR
+    // Empty method because we don't need the preview outside of editor
+    public void EnqueuePass(ScriptableRenderContext context, Camera camera){}
+#endif
+
+#if UNITY_EDITOR
+
         private Mesh previewMesh = null;
         private RenderTexture previewTexture = null;
         private RenderTexture editModeRenderOutputTexture = null;
@@ -22,12 +29,6 @@ namespace Spelunx
         private CavernPreviewRenderPass cavernPreviewRenderPass;
         private bool didRenderLastFrame = false;
 
-#if !UNITY_EDITOR
-    // Empty method because we don't need the preview outside of editor
-    public void EnqueuePass(ScriptableRenderContext context, Camera camera){}
-#endif
-
-#if UNITY_EDITOR
         private void OnEnable()
         {
             didRenderLastFrame = false;

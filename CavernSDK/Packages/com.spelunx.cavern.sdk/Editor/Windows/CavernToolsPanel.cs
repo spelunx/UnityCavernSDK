@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.SceneManagement;
 using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.Universal;
 
 namespace Spelunx
 {
@@ -71,11 +72,61 @@ namespace Spelunx
                 Undo.DestroyObjectImmediate(GameObject.FindGameObjectWithTag("MainCamera"));
             }
 
+            AddRendererToURPAsset();
+
             // mark scene as edited to prompt saving
             EditorSceneManager.MarkSceneDirty(SceneManager.GetActiveScene());
 
             // sets roundUI section of tools panel to be visible
             roundUI.style.visibility = Visibility.Visible;
+        }
+
+        private void AddRendererToURPAsset()
+        {
+
+            UniversalRenderPipelineAsset urpAsset = AssetDatabase.LoadAssetAtPath<UniversalRenderPipelineAsset>("Assets/Settings/PC_RPAsset.asset");
+            ScriptableRendererData newRenderer = AssetDatabase.LoadAssetAtPath<ScriptableRendererData>("Packages/com.spelunx.cavern.sdk/Runtime/Scripts/Camera/Cavern Renderer.asset");
+
+            if (urpAsset == null || newRenderer == null)
+            {
+                Debug.LogError("Failed to add Cavern Renderer to URP asset. Please do this manually.");
+                return;
+            }
+
+            SerializedObject serializedAsset = new SerializedObject(urpAsset);
+            SerializedProperty rendererListProperty = serializedAsset.FindProperty("m_RendererDataList");
+
+            if (rendererListProperty != null && rendererListProperty.isArray)
+            {
+                // Check if the renderer exists already in the array
+                for(int i = 0; i < rendererListProperty.arraySize; i++)
+                {
+                    SerializedProperty el = rendererListProperty.GetArrayElementAtIndex(i);
+                    if(el.objectReferenceValue == newRenderer)
+                    {
+                        // already exists, so we stop here
+                        return;
+                    }
+                }
+
+                // Add the renderer to the end of the array
+                int newIndex = rendererListProperty.arraySize;
+                rendererListProperty.InsertArrayElementAtIndex(newIndex);
+
+                SerializedProperty element = rendererListProperty.GetArrayElementAtIndex(newIndex);
+                element.objectReferenceValue = newRenderer;
+
+                // 4. Apply the modified properties
+                serializedAsset.ApplyModifiedProperties();
+
+                // 5. Save the asset
+                EditorUtility.SetDirty(urpAsset);
+                AssetDatabase.SaveAssets();
+            }
+            else
+            {
+                Debug.LogError("Failed to add Cavern Renderer to URP asset. Please do this manually.");
+            }
         }
 
         private void RoundUISetup(ClickEvent evt)
